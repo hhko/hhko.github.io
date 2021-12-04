@@ -37,14 +37,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - run: npm install postcss-cli
-      
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-
-      - run: gem install asciidoctor
+      - run: npm install postcss-cli autoprefixer
 
       - name: Run Hugo
         run: |
