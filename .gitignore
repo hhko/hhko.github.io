@@ -348,3 +348,13 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+
+#
+# Hugo output
+# https://github.com/kubernetes/website/blob/main/.gitignore#L29
+#
+public/
+resources/
+#node_modules/
+#package-lock.json
