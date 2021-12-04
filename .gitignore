@@ -356,5 +356,6 @@ MigrationBackup/
 #
 public/
 resources/
-#node_modules/
-#package-lock.json
+node_modules/
+package-lock.json
+.hugo_build.lock
