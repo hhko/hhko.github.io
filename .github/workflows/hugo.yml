@@ -36,7 +36,7 @@ jobs:
       #    restore-keys: |
       #      ${{ runner.os }}-node-
 
-      - run: apt install -y utoprefixer postcss-cli
+      - run: npm install utoprefixer postcss-cli
       - run: hugo --minify
 
       - name: Deploy
