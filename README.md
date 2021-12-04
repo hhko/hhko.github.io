@@ -13,7 +13,7 @@
 
 <br/>
 
-## - 개발 환경
+## 1. 개발 환경
 - 관리자 권한 PowerShell 열기
 - choco 설치 : [INSTALLING CHOCOLATEY](https://chocolatey.org/install)
   ```powershell
