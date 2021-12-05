@@ -24,22 +24,24 @@ jobs:
           hugo-version: '0.89.4'
           extended: true
 
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+      #- name: Setup Node
+      #  uses: actions/setup-node@v2
+      #  with:
+      #    node-version: '14'
 
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      #- name: Cache Dependencies
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: ~/.npm
+      #    key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #    restore-keys: |
+      #      ${{ runner.os }}-node-
+    
+      #- name: Setup Packages
+      #  run: run: npm install cli
 
       - name: Setup Packages
-        #run: npm install autoprefixer postcss-cli
-        run: npm install cli
+        run: npm install autoprefixer postcss-cli
       
       - name: Build
         run: hugo --minify

@@ -1,14 +1,30 @@
 baseURL = 'https://hhko.github.io/'
 languageCode = 'ko-KR'
-title = '배움은 설렘이다'
+#title = '배움은 설렘이다'
 theme = ["docsy"]
 
+#
 # Language settings
+#
+
 contentDir = "content/ko"
 defaultContentLanguage = "ko"
 defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 disableBrowserError = true
+
+#
+# Language definitions.
+#
+
+[languages]
+[languages.ko]
+title = '배움은 설렘이다'
+description = "More fun with you"
+languageName = "한국어"
+weight = 3
+contentDir = "content/ko"
+languagedirection = "ltr"
 
 [[menu.main]]
     name = "GitHub"
