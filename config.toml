@@ -3,12 +3,12 @@ languageCode = 'ko-KR'
 title = '배움은 설렘이다'
 theme = ["docsy"]
 
-## Language settings
-#contentDir = "content/ko"
-#defaultContentLanguage = "ko"
-#defaultContentLanguageInSubdir = false
-#enableRobotsTXT = true
-#disableBrowserError = true
+# Language settings
+contentDir = "content/ko"
+defaultContentLanguage = "ko"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+disableBrowserError = true
 
 [[menu.main]]
     name = "GitHub"

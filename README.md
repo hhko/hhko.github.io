@@ -171,8 +171,6 @@
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
   ```
-  - https://github.com/kubernetes/website/blob/main/package-lock.json
-  
 - 저장소 추가
   ```shell
   git add .
