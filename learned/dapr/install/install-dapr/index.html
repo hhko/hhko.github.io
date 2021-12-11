@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=generator content="Hugo 0.89.4">
-<link rel=alternate type=application/rss+xml href=https://hhko.github.io/learned/dapr/install-dapr/index.xml>
+<link rel=alternate type=application/rss+xml href=https://hhko.github.io/learned/dapr/install/install-dapr/index.xml>
 <meta name=robots content="index, follow">
 <link rel="shortcut icon" href=/favicons/favicon.ico>
 <link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180>
@@ -20,7 +20,7 @@
 <meta property="og:title" content="Dapr 설치">
 <meta property="og:description" content="Ubuntu 20.04 LTS 환경에서 Dapr 설치">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://hhko.github.io/learned/dapr/install-dapr/"><meta property="og:site_name" content="배움은 설렘이다">
+<meta property="og:url" content="https://hhko.github.io/learned/dapr/install/install-dapr/"><meta property="og:site_name" content="배움은 설렘이다">
 <meta itemprop=name content="Dapr 설치">
 <meta itemprop=description content="Ubuntu 20.04 LTS 환경에서 Dapr 설치"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Dapr 설치">
@@ -62,15 +62,8 @@
 <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learned-li>
 <a href=/learned/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-learned><span>배움</span></a>
 <ul class=ul-1>
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learneddapr-li>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-learneddapr-li>
 <a href=/learned/dapr/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddapr><span>Dapr</span></a>
-<ul class="ul-2 foldable">
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-learneddaprinstall-dapr-li>
-<a href=/learned/dapr/install-dapr/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstall-dapr><span class=td-sidebar-nav-active-item>Dapr 설치</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstall-wsl-li>
-<a href=/learned/dapr/install-wsl/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstall-wsl><span>Ubuntu 20.04 LTS 설치</span></a>
-</li>
-</ul>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-learnedopensearch-li>
 <a href=/learned/opensearch/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learnedopensearch><span>OpenSearch</span></a>
 <ul class="ul-2 foldable">
@@ -92,8 +85,8 @@
 </div>
 <div class=td-toc><nav id=TableOfContents>
 <ul>
-<li><a href=#dapr-설치-주요-명령어>Dapr 설치 주요 명령어</a></li>
-<li><a href=#root-권한일-때-dapr-cli-설치>root 권한일 때 Dapr CLI 설치</a></li>
+<li><a href=#명령어-요약>명령어 요약</a></li>
+<li><a href=#dapr-cli-설치root-권한일-때>Dapr CLI 설치(Root 권한일 때)</a></li>
 <li><a href=#dapr-runtime-설치>Dapr Runtime 설치</a></li>
 <li><a href=#dapr-runtime-설치-확인>Dapr Runtime 설치 확인</a></li>
 <li><a href=#todo>TODO</a></li>
@@ -110,7 +103,7 @@
 <a href=https://hhko.github.io/learned/dapr/>Dapr</a>
 </li>
 <li class="breadcrumb-item active" aria-current=page>
-<a href=https://hhko.github.io/learned/dapr/install-dapr/>Dapr 설치</a>
+<a href=https://hhko.github.io/learned/dapr/install/install-dapr/>Dapr 설치</a>
 </li>
 </ol>
 </nav>
@@ -119,12 +112,9 @@
 <div class=lead>Ubuntu 20.04 LTS 환경에서 Dapr 설치</div>
 <header class=article-meta>
 </header>
-<h2 id=dapr-설치-주요-명령어>Dapr 설치 주요 명령어</h2>
+<h2 id=명령어-요약>명령어 요약</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># Dapr CLI 설치(Root 권한일 때)</span>
 wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
-
-<span style=color:#75715e># Dapr CLI &amp; Runtime 버전 확인</span>
-dapr --version
 
 <span style=color:#75715e># Dapr Runtimer 설치</span>
 dapr init
@@ -134,7 +124,7 @@ dapr --version
 
 <span style=color:#75715e># Dapr Runtime 파일 확인</span>
 ls -al $HOME/.dapr
-</code></pre></div><h2 id=root-권한일-때-dapr-cli-설치>root 권한일 때 Dapr CLI 설치</h2>
+</code></pre></div><h2 id=dapr-cli-설치root-권한일-때>Dapr CLI 설치(Root 권한일 때)</h2>
 <ul>
 <li>참고 자료
 <ul>
@@ -150,7 +140,7 @@ ls -al $HOME/.dapr
 <li><code>https://raw.githubusercontent.com/dapr/cli/master/install/install.sh</code> 파일을 다운로드 받아 bash 쉘에게 실행 시킨다.</li>
 </ul>
 </li>
-<li>설치 명령어 과정
+<li>설치 과정
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>root@HHKO-LABTOP:~# wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
 Getting the latest Dapr CLI...
 Your system is linux_amd64
@@ -177,7 +167,7 @@ Runtime version: n/a                <span style=color:#75715e># Dapr Runtime은 
 <li>Dapr Runtime 설치 명령어
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>dapr init
 </code></pre></div></li>
-<li>설치 명령어 과정
+<li>설치 과정
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>root@HHKO-LABTOP:~# dapr init
 ⌛  Making the jump to hyperspace...
 ℹ️  Installing runtime version 1.5.1
@@ -228,7 +218,20 @@ drwx------ <span style=color:#ae81ff>4</span> root root <span style=color:#ae81f
 drwxrwxrwx <span style=color:#ae81ff>3</span> root root <span style=color:#ae81ff>4096</span> Dec <span style=color:#ae81ff>11</span> 18:39 bin
 drwxrwxrwx <span style=color:#ae81ff>2</span> root root <span style=color:#ae81ff>4096</span> Dec <span style=color:#ae81ff>11</span> 18:39 components
 -rw-r--r-- <span style=color:#ae81ff>1</span> root root  <span style=color:#ae81ff>187</span> Dec <span style=color:#ae81ff>11</span> 18:39 config.yaml
+</code></pre></div><ul>
+<li><code>$HOME/.dapr</code> 폴더 구성
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>├── bin              <span style=color:#75715e># 실행 파일 폴더</span>
+│   ├── daprd        <span style=color:#75715e># 서비스</span>
+│   ├── dashboard    <span style=color:#75715e># 대시보드</span>
+│   └── web
+│       └── ...
+├── components       <span style=color:#75715e># 컴포넌트</span>
+│   ├── pubsub.yaml
+│   └── statestore.yaml
+└── config.yaml      <span style=color:#75715e># 기본 설정</span>
 </code></pre></div></li>
+</ul>
+</li>
 </ul>
 <h2 id=todo>TODO</h2>
 <ul>
