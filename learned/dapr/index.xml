@@ -1,0 +1,198 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>배움은 설렘이다 – Dapr</title><link>https://hhko.github.io/learned/dapr/</link><description>Recent content in Dapr on 배움은 설렘이다</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><atom:link href="https://hhko.github.io/learned/dapr/index.xml" rel="self" type="application/rss+xml"/><item><title>Learned: Dapr 설치</title><link>https://hhko.github.io/learned/dapr/install-dapr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/install-dapr/</guid><description>
+&lt;h2 id="dapr-설치-주요-명령어">Dapr 설치 주요 명령어&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># Dapr CLI 설치(Root 권한일 때)&lt;/span>
+wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+&lt;span style="color:#75715e"># Dapr CLI &amp;amp; Runtime 버전 확인&lt;/span>
+dapr --version
+&lt;span style="color:#75715e"># Dapr Runtimer 설치&lt;/span>
+dapr init
+&lt;span style="color:#75715e"># Dapr CLI &amp;amp; Runtime 버전 확인&lt;/span>
+dapr --version
+&lt;span style="color:#75715e"># Dapr Runtime 파일 확인&lt;/span>
+ls -al $HOME/.dapr
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="root-권한일-때-dapr-cli-설치">root 권한일 때 Dapr CLI 설치&lt;/h2>
+&lt;ul>
+&lt;li>참고 자료
+&lt;ul>
+&lt;li>&lt;a href="https://docs.dapr.io/getting-started/install-dapr-cli/">Install the Dapr CLI&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Dapr CLI 설치 명령어
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>-q&lt;/code>, &lt;code>--quiet&lt;/code> : quiet (no output)&lt;/li>
+&lt;li>&lt;code>-O&lt;/code>, &lt;code>--output-document=FILE&lt;/code> : write documents to FILE&lt;/li>
+&lt;li>&lt;code>-O -&lt;/code> : 텍스트 출력&lt;/li>
+&lt;li>&lt;code>https://raw.githubusercontent.com/dapr/cli/master/install/install.sh&lt;/code> 파일을 다운로드 받아 bash 쉘에게 실행 시킨다.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>설치 명령어 과정
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">root@HHKO-LABTOP:~# wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+Getting the latest Dapr CLI...
+Your system is linux_amd64
+Installing Dapr CLI...
+Installing v1.5.1 Dapr CLI...
+Downloading https://github.com/dapr/cli/releases/download/v1.5.1/dapr_linux_amd64.tar.gz ...
+dapr installed into /usr/local/bin successfully.
+CLI version: 1.5.1
+Runtime version: n/a
+To get started with Dapr, please visit https://docs.dapr.io/getting-started/
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>Dapr CLI 버전 화인
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">root@HHKO-LABTOP:~# dapr --version
+CLI version: 1.5.1
+Runtime version: n/a &lt;span style="color:#75715e"># Dapr Runtime은 아직 설치가 안된 상태이다.&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="dapr-runtime-설치">Dapr Runtime 설치&lt;/h2>
+&lt;ul>
+&lt;li>참고 사이트
+&lt;a href="https://docs.dapr.io/getting-started/install-dapr-selfhost/">Initialize Dapr in your local environment&lt;/a>&lt;/li>
+&lt;li>Dapr Runtime 설치 명령어
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">dapr init
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>설치 명령어 과정
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">root@HHKO-LABTOP:~# dapr init
+⌛ Making the jump to hyperspace...
+ℹ️ Installing runtime version 1.5.1
+↗ Downloading binaries and setting up components...
+Dapr runtime installed to /root/.dapr/bin, you may run the following to add it to your path &lt;span style="color:#66d9ef">if&lt;/span> you want to run daprd directly:
+export PATH&lt;span style="color:#f92672">=&lt;/span>$PATH:/root/.dapr/bin
+✅ Downloading binaries and setting up components...
+✅ Downloaded binaries and completed components set up.
+ℹ️ daprd binary has been installed to /root/.dapr/bin.
+ℹ️ dapr_placement container is running.
+ℹ️ dapr_redis container is running.
+ℹ️ dapr_zipkin container is running.
+ℹ️ Use &lt;span style="color:#e6db74">`&lt;/span>docker ps&lt;span style="color:#e6db74">`&lt;/span> to check running containers.
+✅ Success! Dapr is up and running. To get started, go here: https://aka.ms/dapr-getting-started
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="dapr-runtime-설치-확인">Dapr Runtime 설치 확인&lt;/h2>
+&lt;ul>
+&lt;li>Dapr Runtime 버전 확인
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">root@HHKO-LABTOP:~# dapr --version
+CLI version: 1.5.1
+Runtime version: 1.5.1 &lt;span style="color:#75715e"># Dapr Runtime 버전&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>도커 컨테이너 확인
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">root@HHKO-LABTOP:~# docker container ls
+CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+5025e828428d daprio/dapr:1.5.1 &lt;span style="color:#e6db74">&amp;#34;./placement&amp;#34;&lt;/span> &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">7&lt;/span> minutes 0.0.0.0:50005-&amp;gt;50005/tcp dapr_placement
+db441b54b714 redis &lt;span style="color:#e6db74">&amp;#34;docker-entrypoint.s…&amp;#34;&lt;/span> &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">7&lt;/span> minutes 0.0.0.0:6379-&amp;gt;6379/tcp dapr_redis
+9f50ede2ba24 openzipkin/zipkin &lt;span style="color:#e6db74">&amp;#34;start-zipkin&amp;#34;&lt;/span> &lt;span style="color:#ae81ff">7&lt;/span> minutes ago Up &lt;span style="color:#ae81ff">7&lt;/span> minutes &lt;span style="color:#f92672">(&lt;/span>healthy&lt;span style="color:#f92672">)&lt;/span> 9410/tcp, 0.0.0.0:9411-&amp;gt;9411/tcp dapr_zipkin
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>dapr_placement&lt;/code> : daprio/dapr:1.5.1&lt;/li>
+&lt;li>&lt;code>dapr_redis&lt;/code> : redis&lt;/li>
+&lt;li>&lt;code>dapr_zipkin&lt;/code> : openzipkin/zipkin&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>도커 이미지 확인
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">root@HHKO-LABTOP:~# docker image ls
+REPOSITORY TAG IMAGE ID CREATED SIZE
+daprio/dapr 1.5.1 226aa2a3ceeb &lt;span style="color:#ae81ff">4&lt;/span> days ago 214MB
+redis latest aea9b698d7d1 &lt;span style="color:#ae81ff">8&lt;/span> days ago 113MB
+openzipkin/zipkin latest 353c2229bf24 &lt;span style="color:#ae81ff">11&lt;/span> days ago 155MB
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>설치 파일 확인 : &lt;code>$HOME/.dapr&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">root@HHKO-LABTOP:~# ls -al $HOME/.dapr
+total &lt;span style="color:#ae81ff">20&lt;/span>
+drwxr-xr-x &lt;span style="color:#ae81ff">4&lt;/span> root root &lt;span style="color:#ae81ff">4096&lt;/span> Dec &lt;span style="color:#ae81ff">11&lt;/span> 18:39 .
+drwx------ &lt;span style="color:#ae81ff">4&lt;/span> root root &lt;span style="color:#ae81ff">4096&lt;/span> Dec &lt;span style="color:#ae81ff">11&lt;/span> 18:39 ..
+drwxrwxrwx &lt;span style="color:#ae81ff">3&lt;/span> root root &lt;span style="color:#ae81ff">4096&lt;/span> Dec &lt;span style="color:#ae81ff">11&lt;/span> 18:39 bin
+drwxrwxrwx &lt;span style="color:#ae81ff">2&lt;/span> root root &lt;span style="color:#ae81ff">4096&lt;/span> Dec &lt;span style="color:#ae81ff">11&lt;/span> 18:39 components
+-rw-r--r-- &lt;span style="color:#ae81ff">1&lt;/span> root root &lt;span style="color:#ae81ff">187&lt;/span> Dec &lt;span style="color:#ae81ff">11&lt;/span> 18:39 config.yaml
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="todo">TODO&lt;/h2>
+&lt;ul>
+&lt;li>특정 버전 설치&lt;/li>
+&lt;li>업그레이드&lt;/li>
+&lt;/ul></description></item><item><title>Learned: Ubuntu 20.04 LTS 설치</title><link>https://hhko.github.io/learned/dapr/install-wsl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/install-wsl/</guid><description>
+&lt;h2 id="ubuntu-2004-lts-설치-주요-명령어">Ubuntu 20.04 LTS 설치 주요 명령어&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># 목록&lt;/span>
+wsl -l -v
+&lt;span style="color:#75715e"># 배포 추가하기&lt;/span>
+wsl --import &lt;span style="color:#e6db74">`&lt;/span>
+ubuntu20.04-dapr &lt;span style="color:#e6db74">`&lt;/span>
+C:&lt;span style="color:#ae81ff">\W&lt;/span>orkspace&lt;span style="color:#ae81ff">\D&lt;/span>ev&lt;span style="color:#ae81ff">\W&lt;/span>sl&lt;span style="color:#ae81ff">\U&lt;/span>buntu20.04-Dapr &lt;span style="color:#e6db74">`&lt;/span>
+C:&lt;span style="color:#ae81ff">\W&lt;/span>orkspace&lt;span style="color:#ae81ff">\D&lt;/span>ev&lt;span style="color:#ae81ff">\W&lt;/span>sl&lt;span style="color:#ae81ff">\U&lt;/span>buntu20.04-RootFS&lt;span style="color:#ae81ff">\f&lt;/span>ocal-server-cloudimg-amd64-wsl.rootfs.tar.gz
+&lt;span style="color:#75715e"># 기본 배포 만들기&lt;/span>
+wsl --set-default ubuntu20.04-dapr
+&lt;span style="color:#75715e"># 실행(접속)하기&lt;/span>
+wsl -d ubuntu20.04-dapr
+&lt;span style="color:#75715e"># 특정 계정으로 실행(접속)하기&lt;/span>
+wsl -d ubuntu20.04-dapr -u hello
+&lt;span style="color:#75715e"># 종료하기&lt;/span>
+wsl -t ubuntu20.04-dapr
+&lt;span style="color:#75715e"># 배포 제거하기&lt;/span>
+wsl --unregister ubuntu20.04-dapr
+&lt;span style="color:#75715e"># WSL 종료하기&lt;/span>
+wsl --shutdown
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="windows-10-wsl2-설치">Windows 10 WSL2 설치&lt;/h2>
+&lt;ul>
+&lt;li>..&lt;/li>
+&lt;/ul>
+&lt;h2 id="ubuntu-rootfs-파일">Ubuntu RootFS 파일&lt;/h2>
+&lt;ul>
+&lt;li>Ubuntu 20.04 LTS - Focal Fossa : &lt;a href="https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64-wsl.rootfs.tar.gz">focal-server-cloudimg-amd64-wsl.rootfs.tar.gz&lt;/a>&lt;/li>
+&lt;li>Ubuntu 18.04 LTS - Bionic Beaver : &lt;a href="https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64-wsl.rootfs.tar.gz">bionic-server-cloudimg-amd64-wsl.rootfs.tar.gz&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="ubuntu-rootfs-설치">Ubuntu RootFS 설치&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>wsl --import&lt;/code> 명령어
+&lt;ul>
+&lt;li>&lt;code>wsl --import&lt;/code> &lt;code>&amp;lt;배포&amp;gt;&lt;/code> &lt;code>&amp;lt;설치 위치&amp;gt;&lt;/code> &lt;code>&amp;lt;파일 이름&amp;gt;&lt;/code> &lt;code>[옵션]&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>&amp;lt;배포&amp;gt;&lt;/code> : 식별 이름&lt;/li>
+&lt;li>&lt;code>&amp;lt;설치 위치&amp;gt;&lt;/code> : Ubuntu 가상화 파일을 생성할 폴더 경로&lt;/li>
+&lt;li>&lt;code>&amp;lt;파일 이름&amp;gt;&lt;/code> : Ubuntu RootFS 파일 경로&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>폴더 구성
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">C:&lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span> └ Workspace&lt;span style="color:#ae81ff">\ &lt;/span>
+└ Dev&lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span> └ Wsl&lt;span style="color:#ae81ff">\
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span> └ Ubuntu20.04-Dapr&lt;span style="color:#ae81ff">\ &lt;/span> &lt;span style="color:#75715e"># ...&lt;/span>
+└ Ubuntu20.04-RootFS&lt;span style="color:#ae81ff">\ &lt;/span> &lt;span style="color:#75715e"># focal-server-cloudimg-amd64-wsl.rootfs.tar.gz&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>설치 명령어
+&lt;pre tabindex="0">&lt;code class="language-posershell" data-lang="posershell">wsl --import `
+ubuntu20.04-dapr `
+C:\Workspace\Dev\Wsl\Ubuntu20.04-Dapr `
+C:\Workspace\Dev\Wsl\Ubuntu20.04-RootFS\focal-server-cloudimg-amd64-wsl.rootfs.tar.gz
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>&lt;code>ubuntu20.04-dapr&lt;/code> : 식별 이름&lt;/li>
+&lt;li>&lt;code>C:\Workspace\Dev\Wsl\Ubuntu20.04-Dapr&lt;/code> : Ubuntu 가상화 파일을 생성할 폴더 경로&lt;/li>
+&lt;li>&lt;code>C:\Workspace\Dev\Wsl\Ubuntu20.04-RootFS\focal-server-cloudimg-amd64-wsl.rootfs.tar.gz&lt;/code> : RootFS 파일&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>설치 결과
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># 목록 확인&lt;/span>
+PS C:&lt;span style="color:#ae81ff">\W&lt;/span>orkspace&lt;span style="color:#ae81ff">\D&lt;/span>ev&amp;gt; wsl -l -v
+NAME STATE VERSION
+* docker-desktop Running &lt;span style="color:#ae81ff">2&lt;/span>
+ubuntu20.04-dapr Stopped &lt;span style="color:#ae81ff">2&lt;/span>
+docker-desktop-data Running &lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>기본 배포 설정
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># 기본 값으로 지정&lt;/span>
+PS C:&lt;span style="color:#ae81ff">\W&lt;/span>orkspace&lt;span style="color:#ae81ff">\D&lt;/span>ev&amp;gt; wsl --set-default ubuntu20.04-dapr
+&lt;span style="color:#75715e"># 기본 값 지정 확인&lt;/span>
+PS C:&lt;span style="color:#ae81ff">\W&lt;/span>orkspace&lt;span style="color:#ae81ff">\D&lt;/span>ev&amp;gt; wsl -l -v
+NAME STATE VERSION
+* ubuntu20.04-dapr Running &lt;span style="color:#ae81ff">2&lt;/span>
+docker-desktop Running &lt;span style="color:#ae81ff">2&lt;/span>
+docker-desktop-data Running &lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>Ubuntu 20.04 접속
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># ubuntu20.04-dapr 접속&lt;/span>
+PS C:&lt;span style="color:#ae81ff">\W&lt;/span>orkspace&lt;span style="color:#ae81ff">\D&lt;/span>ev&amp;gt; wsl
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="docker-for-winwodws-설치">Docker for Winwodws 설치&lt;/h2>
+&lt;p>&lt;img src="settings-general.png" alt="">
+&lt;img src="settings-resources-integration.png" alt="">&lt;/p></description></item></channel></rss>

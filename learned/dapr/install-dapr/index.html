@@ -1,0 +1,262 @@
+<!doctype html><html lang=ko class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.89.4">
+<link rel=alternate type=application/rss+xml href=https://hhko.github.io/learned/dapr/install-dapr/index.xml>
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192>
+<title>Dapr 설치 | 배움은 설렘이다</title>
+<meta name=description content="Ubuntu 20.04 LTS 환경에서 Dapr 설치">
+<meta property="og:title" content="Dapr 설치">
+<meta property="og:description" content="Ubuntu 20.04 LTS 환경에서 Dapr 설치">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hhko.github.io/learned/dapr/install-dapr/"><meta property="og:site_name" content="배움은 설렘이다">
+<meta itemprop=name content="Dapr 설치">
+<meta itemprop=description content="Ubuntu 20.04 LTS 환경에서 Dapr 설치"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="Dapr 설치">
+<meta name=twitter:description content="Ubuntu 20.04 LTS 환경에서 Dapr 설치">
+<link rel=preload href=/scss/main.min.90983698afafd407e6b72e83a2b749ff1726e8502277108f05bd66510938dec2.css as=style>
+<link href=/scss/main.min.90983698afafd407e6b72e83a2b749ff1726e8502277108f05bd66510938dec2.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.5.1.min.js integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin=anonymous></script>
+</head>
+<body class=td-section>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+<a class=navbar-brand href=/>
+<span class=navbar-logo></span><span class="text-uppercase font-weight-bold">배움은 설렘이다</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class="nav-link active" href=/learned/><span class=active>배움</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=https://github.com/hhko/hhko.github.io target=_blank><span>GitHub</span></a>
+</li>
+</ul>
+</div>
+<div class="navbar-nav d-none d-lg-block"></div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learned-li>
+<a href=/learned/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-learned><span>배움</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learneddapr-li>
+<a href=/learned/dapr/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddapr><span>Dapr</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-learneddaprinstall-dapr-li>
+<a href=/learned/dapr/install-dapr/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstall-dapr><span class=td-sidebar-nav-active-item>Dapr 설치</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstall-wsl-li>
+<a href=/learned/dapr/install-wsl/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstall-wsl><span>Ubuntu 20.04 LTS 설치</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-learnedopensearch-li>
+<a href=/learned/opensearch/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learnedopensearch><span>OpenSearch</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learnedopensearchinstall-li>
+<a href=/learned/opensearch/install/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-learnedopensearchinstall><span>설치</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learnedlink-li>
+<a href=/learned/link/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learnedlink><span>참고 자료</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#dapr-설치-주요-명령어>Dapr 설치 주요 명령어</a></li>
+<li><a href=#root-권한일-때-dapr-cli-설치>root 권한일 때 Dapr CLI 설치</a></li>
+<li><a href=#dapr-runtime-설치>Dapr Runtime 설치</a></li>
+<li><a href=#dapr-runtime-설치-확인>Dapr Runtime 설치 확인</a></li>
+<li><a href=#todo>TODO</a></li>
+</ul>
+</nav></div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://hhko.github.io/learned/>배움</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://hhko.github.io/learned/dapr/>Dapr</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://hhko.github.io/learned/dapr/install-dapr/>Dapr 설치</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>Dapr 설치</h1>
+<div class=lead>Ubuntu 20.04 LTS 환경에서 Dapr 설치</div>
+<header class=article-meta>
+</header>
+<h2 id=dapr-설치-주요-명령어>Dapr 설치 주요 명령어</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># Dapr CLI 설치(Root 권한일 때)</span>
+wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+
+<span style=color:#75715e># Dapr CLI &amp; Runtime 버전 확인</span>
+dapr --version
+
+<span style=color:#75715e># Dapr Runtimer 설치</span>
+dapr init
+
+<span style=color:#75715e># Dapr CLI &amp; Runtime 버전 확인</span>
+dapr --version
+
+<span style=color:#75715e># Dapr Runtime 파일 확인</span>
+ls -al $HOME/.dapr
+</code></pre></div><h2 id=root-권한일-때-dapr-cli-설치>root 권한일 때 Dapr CLI 설치</h2>
+<ul>
+<li>참고 자료
+<ul>
+<li><a href=https://docs.dapr.io/getting-started/install-dapr-cli/>Install the Dapr CLI</a></li>
+</ul>
+</li>
+<li>Dapr CLI 설치 명령어
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+</code></pre></div><ul>
+<li><code>-q</code>, <code>--quiet</code> : quiet (no output)</li>
+<li><code>-O</code>, <code>--output-document=FILE</code> : write documents to FILE</li>
+<li><code>-O -</code> : 텍스트 출력</li>
+<li><code>https://raw.githubusercontent.com/dapr/cli/master/install/install.sh</code> 파일을 다운로드 받아 bash 쉘에게 실행 시킨다.</li>
+</ul>
+</li>
+<li>설치 명령어 과정
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>root@HHKO-LABTOP:~# wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+Getting the latest Dapr CLI...
+Your system is linux_amd64
+Installing Dapr CLI...
+
+Installing v1.5.1 Dapr CLI...
+Downloading https://github.com/dapr/cli/releases/download/v1.5.1/dapr_linux_amd64.tar.gz ...
+dapr installed into /usr/local/bin successfully.
+CLI version: 1.5.1
+Runtime version: n/a
+
+To get started with Dapr, please visit https://docs.dapr.io/getting-started/
+</code></pre></div></li>
+<li>Dapr CLI 버전 화인
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>root@HHKO-LABTOP:~# dapr --version
+CLI version: 1.5.1
+Runtime version: n/a                <span style=color:#75715e># Dapr Runtime은 아직 설치가 안된 상태이다.</span>
+</code></pre></div></li>
+</ul>
+<h2 id=dapr-runtime-설치>Dapr Runtime 설치</h2>
+<ul>
+<li>참고 사이트
+<a href=https://docs.dapr.io/getting-started/install-dapr-selfhost/>Initialize Dapr in your local environment</a></li>
+<li>Dapr Runtime 설치 명령어
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>dapr init
+</code></pre></div></li>
+<li>설치 명령어 과정
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>root@HHKO-LABTOP:~# dapr init
+⌛  Making the jump to hyperspace...
+ℹ️  Installing runtime version 1.5.1
+↗  Downloading binaries and setting up components...
+Dapr runtime installed to /root/.dapr/bin, you may run the following to add it to your path <span style=color:#66d9ef>if</span> you want to run daprd directly:
+    export PATH<span style=color:#f92672>=</span>$PATH:/root/.dapr/bin
+✅  Downloading binaries and setting up components...
+✅  Downloaded binaries and completed components set up.
+ℹ️  daprd binary has been installed to /root/.dapr/bin.
+ℹ️  dapr_placement container is running.
+ℹ️  dapr_redis container is running.
+ℹ️  dapr_zipkin container is running.
+ℹ️  Use <span style=color:#e6db74>`</span>docker ps<span style=color:#e6db74>`</span> to check running containers.
+✅  Success! Dapr is up and running. To get started, go here: https://aka.ms/dapr-getting-started
+</code></pre></div></li>
+</ul>
+<h2 id=dapr-runtime-설치-확인>Dapr Runtime 설치 확인</h2>
+<ul>
+<li>Dapr Runtime 버전 확인
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>root@HHKO-LABTOP:~# dapr --version
+CLI version: 1.5.1
+Runtime version: 1.5.1             <span style=color:#75715e># Dapr Runtime 버전</span>
+</code></pre></div></li>
+<li>도커 컨테이너 확인
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>root@HHKO-LABTOP:~# docker container ls
+CONTAINER ID   IMAGE               COMMAND                  CREATED         STATUS                   PORTS                              NAMES
+5025e828428d   daprio/dapr:1.5.1   <span style=color:#e6db74>&#34;./placement&#34;</span>            <span style=color:#ae81ff>7</span> minutes ago   Up <span style=color:#ae81ff>7</span> minutes             0.0.0.0:50005-&gt;50005/tcp           dapr_placement
+db441b54b714   redis               <span style=color:#e6db74>&#34;docker-entrypoint.s…&#34;</span>   <span style=color:#ae81ff>7</span> minutes ago   Up <span style=color:#ae81ff>7</span> minutes             0.0.0.0:6379-&gt;6379/tcp             dapr_redis
+9f50ede2ba24   openzipkin/zipkin   <span style=color:#e6db74>&#34;start-zipkin&#34;</span>           <span style=color:#ae81ff>7</span> minutes ago   Up <span style=color:#ae81ff>7</span> minutes <span style=color:#f92672>(</span>healthy<span style=color:#f92672>)</span>   9410/tcp, 0.0.0.0:9411-&gt;9411/tcp   dapr_zipkin
+</code></pre></div><ul>
+<li><code>dapr_placement</code> : daprio/dapr:1.5.1</li>
+<li><code>dapr_redis</code> : redis</li>
+<li><code>dapr_zipkin</code> : openzipkin/zipkin</li>
+</ul>
+</li>
+<li>도커 이미지 확인
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>root@HHKO-LABTOP:~# docker image ls
+REPOSITORY          TAG       IMAGE ID       CREATED       SIZE
+daprio/dapr         1.5.1     226aa2a3ceeb   <span style=color:#ae81ff>4</span> days ago    214MB
+redis               latest    aea9b698d7d1   <span style=color:#ae81ff>8</span> days ago    113MB
+openzipkin/zipkin   latest    353c2229bf24   <span style=color:#ae81ff>11</span> days ago   155MB
+</code></pre></div></li>
+<li>설치 파일 확인 : <code>$HOME/.dapr</code>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>root@HHKO-LABTOP:~# ls -al $HOME/.dapr
+total <span style=color:#ae81ff>20</span>
+drwxr-xr-x <span style=color:#ae81ff>4</span> root root <span style=color:#ae81ff>4096</span> Dec <span style=color:#ae81ff>11</span> 18:39 .
+drwx------ <span style=color:#ae81ff>4</span> root root <span style=color:#ae81ff>4096</span> Dec <span style=color:#ae81ff>11</span> 18:39 ..
+drwxrwxrwx <span style=color:#ae81ff>3</span> root root <span style=color:#ae81ff>4096</span> Dec <span style=color:#ae81ff>11</span> 18:39 bin
+drwxrwxrwx <span style=color:#ae81ff>2</span> root root <span style=color:#ae81ff>4096</span> Dec <span style=color:#ae81ff>11</span> 18:39 components
+-rw-r--r-- <span style=color:#ae81ff>1</span> root root  <span style=color:#ae81ff>187</span> Dec <span style=color:#ae81ff>11</span> 18:39 config.yaml
+</code></pre></div></li>
+</ul>
+<h2 id=todo>TODO</h2>
+<ul>
+<li>특정 버전 설치</li>
+<li>업그레이드</li>
+</ul>
+<div class=section-index>
+</div>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/js/tabpane-persist.js></script>
+<script src=/js/main.min.391da3eb18949eadd765f25289a14a0b83052a94db796648e9785f4b2a98f3a9.js integrity="sha256-OR2j6xiUnq3XZfJSiaFKC4MFKpTbeWZI6XhfSyqY86k=" crossorigin=anonymous></script>
+</body>
+</html>
