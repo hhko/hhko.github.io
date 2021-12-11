@@ -3,12 +3,13 @@ title: Ubuntu 20.04 LTS 설치
 #linkTitle: OpenSearch 링크 제목
 description: WSL2 기반 Ubuntu 20.04 LTS 환경 구축
 type: docs
+wegiht: 1
 #no_list: true
 #main_menu: true
 #content_type: concept
 ---
 
-## Ubuntu 20.04 LTS 설치 주요 명령어
+## 명령어 요약
 ```shell
 # 목록
 wsl -l -v
@@ -63,9 +64,9 @@ wsl --shutdown
 - 설치 명령어
   ```posershell
   wsl --import `
-  ubuntu20.04-dapr `
-  C:\Workspace\Dev\Wsl\Ubuntu20.04-Dapr `
-  C:\Workspace\Dev\Wsl\Ubuntu20.04-RootFS\focal-server-cloudimg-amd64-wsl.rootfs.tar.gz
+    ubuntu20.04-dapr `
+    C:\Workspace\Dev\Wsl\Ubuntu20.04-Dapr `
+    C:\Workspace\Dev\Wsl\Ubuntu20.04-RootFS\focal-server-cloudimg-amd64-wsl.rootfs.tar.gz
   ```
   - `ubuntu20.04-dapr` : 식별 이름
   - `C:\Workspace\Dev\Wsl\Ubuntu20.04-Dapr` : Ubuntu 가상화 파일을 생성할 폴더 경로

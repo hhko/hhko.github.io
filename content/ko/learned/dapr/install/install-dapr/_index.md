@@ -3,18 +3,16 @@ title: Dapr 설치
 #linkTitle: OpenSearch 링크 제목
 description: Ubuntu 20.04 LTS 환경에서 Dapr 설치
 type: docs
+weight: 2
 #no_list: true
 #main_menu: true
 #content_type: concept
 ---
 
-## Dapr 설치 주요 명령어
+## 명령어 요약
 ```shell
 # Dapr CLI 설치(Root 권한일 때)
 wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
-
-# Dapr CLI & Runtime 버전 확인
-dapr --version
 
 # Dapr Runtimer 설치
 dapr init
@@ -26,7 +24,7 @@ dapr --version
 ls -al $HOME/.dapr
 ```
 
-## root 권한일 때 Dapr CLI 설치
+## Dapr CLI 설치(Root 권한일 때)
 - 참고 자료
   - [Install the Dapr CLI](https://docs.dapr.io/getting-started/install-dapr-cli/)
 - Dapr CLI 설치 명령어
@@ -37,7 +35,7 @@ ls -al $HOME/.dapr
   - `-O`, `--output-document=FILE` : write documents to FILE
   - `-O -` : 텍스트 출력
   - `https://raw.githubusercontent.com/dapr/cli/master/install/install.sh` 파일을 다운로드 받아 bash 쉘에게 실행 시킨다.
-- 설치 명령어 과정
+- 설치 과정
   ```shell
   root@HHKO-LABTOP:~# wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
   Getting the latest Dapr CLI...
@@ -66,7 +64,7 @@ ls -al $HOME/.dapr
   ```shell
   dapr init
   ```
-- 설치 명령어 과정
+- 설치 과정
   ```shell
   root@HHKO-LABTOP:~# dapr init
   ⌛  Making the jump to hyperspace...
@@ -120,7 +118,19 @@ ls -al $HOME/.dapr
   drwxrwxrwx 2 root root 4096 Dec 11 18:39 components
   -rw-r--r-- 1 root root  187 Dec 11 18:39 config.yaml
   ```
-
+  - `$HOME/.dapr` 폴더 구성
+    ```shell
+    ├── bin              # 실행 파일 폴더
+    │   ├── daprd        # 서비스
+    │   ├── dashboard    # 대시보드
+    │   └── web
+    │       └── ...
+    ├── components       # 컴포넌트
+    │   ├── pubsub.yaml
+    │   └── statestore.yaml
+    └── config.yaml      # 기본 설정
+    ```
+    
 ## TODO
 - 특정 버전 설치
 - 업그레이드
