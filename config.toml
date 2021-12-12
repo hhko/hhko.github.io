@@ -30,3 +30,12 @@ languagedirection = "ltr"
     name = "GitHub"
     weight = 50
     url = "https://github.com/hhko/hhko.github.io"
+
+#
+# HTML + Markdown 표시
+# 
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

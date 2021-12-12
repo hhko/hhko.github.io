@@ -29,7 +29,7 @@ sudo chown root:root /etc/apt/sources.list.d/microsoft-prod.list
 sudo apt update; \
   sudo apt install -y apt-transport-https && \
   sudo apt update && \
-  sudo apt install -y dotnet-sdk-6.0
+  sudo apt install -y dotnet-sdk-6.0 aspnetcore-runtime-6.0
 ```
 - `dotnet-sdk-6.0` : `aspnetcore-runtime-6.0`와 `dotnet-runtime-6.0`을 포함한다.
 - `aspnetcore-runtime-6.0`
@@ -49,6 +49,9 @@ sudo apt update; \
     - 2.1
 
 ## .NET 6.0 패키지 설치 확인
+- `apt list --installed | grep dotnet`
+- `apt list --installed | grep aspnetcore`
+
 ```shell
 # .NET 6.0 패키지 설치 확인
 root@HHKO-LABTOP:~# apt list --installed | grep dotnet
@@ -63,27 +66,29 @@ dotnet-runtime-deps-6.0/focal,now 6.0.0-1 amd64 [installed,automatic]
 dotnet-sdk-6.0/focal,now 6.0.100-1 amd64 [installed]
 dotnet-targeting-pack-6.0/focal,now 6.0.0-1 amd64 [installed,automatic]
 ```
-- dotnet-sdk-6.0
-  - dotnet-sdk-6.0/focal
-  - dotnet-apphost-pack-6.0/focal
-  - dotnet-targeting-pack-6.0/focal
-  - dotnet-runtime
+
+- 설치 파일
+  - dotnet-sdk-6.0
+    - dotnet-sdk-6.0/focal
+    - dotnet-apphost-pack-6.0/focal
+    - dotnet-targeting-pack-6.0/focal
+    - dotnet-runtime
+      - dotnet-runtime-6.0/focal
+      - dotnet-runtime-deps-6.0/focal
+      - dotnet-host/focal
+      - dotnet-hostfxr-6.0/focal
+  - aspnetcore-runtime-6.0
+    - aspnetcore-runtime-6.0/focal,
+    - dotnet-runtime
+      - dotnet-runtime-6.0/focal
+      - dotnet-runtime-deps-6.0/focal
+      - dotnet-host/focal
+      - dotnet-hostfxr-6.0/focal
+  - dotnet-runtime-6.0
     - dotnet-runtime-6.0/focal
     - dotnet-runtime-deps-6.0/focal
     - dotnet-host/focal
     - dotnet-hostfxr-6.0/focal
-- aspnetcore-runtime-6.0
-  - aspnetcore-runtime-6.0/focal,
-  - dotnet-runtime
-    - dotnet-runtime-6.0/focal
-    - dotnet-runtime-deps-6.0/focal
-    - dotnet-host/focal
-    - dotnet-hostfxr-6.0/focal
-- dotnet-runtime-6.0
-  - dotnet-runtime-6.0/focal
-  - dotnet-runtime-deps-6.0/focal
-  - dotnet-host/focal
-  - dotnet-hostfxr-6.0/focal
 
 
 ## .NET 6.0 패키지 제거
