@@ -9,6 +9,8 @@ weight: 2
 #content_type: concept
 ---
 
+- 소스 : [링크](./DaprCounter)
+
 ## 명령어 요약
 ```shell
 # 콘솔 프로젝트 생성
@@ -31,7 +33,6 @@ hgetall "DaprCounter||counter"
 ```
 
 ## .NET 6.0 콘솔 프로젝트 생성
-- 소스 : [링크](./DaprCounter)
 - 콘솔 프로젝트 생성
   ```shell
   dotnet new console -o DaprCounter

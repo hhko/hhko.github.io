@@ -1,9 +1,9 @@
 ---
-title: Ubuntu 20.04 LTS
+title: Ubuntu 20.04
 #linkTitle: OpenSearch 링크 제목
 description: WSL2 기반 Ubuntu 20.04 LTS 환경 구축
 type: docs
-wegiht: 1
+weight: 1
 #no_list: true
 #main_menu: true
 #content_type: concept
