@@ -1,0 +1,225 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>배움은 설렘이다 – Helloworld 예제</title><link>https://hhko.github.io/learned/dapr/helloworld/</link><description>Recent content in Helloworld 예제 on 배움은 설렘이다</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><atom:link href="https://hhko.github.io/learned/dapr/helloworld/index.xml" rel="self" type="application/rss+xml"/><item><title>Learned: State</title><link>https://hhko.github.io/learned/dapr/helloworld/state/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/state/</guid><description>
+&lt;h2 id="명령어-요약">명령어 요약&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># Dapr Sideccar 실행&lt;/span>
+dapr run --app-id myapp --dapr-http-port &lt;span style="color:#ae81ff">3500&lt;/span>
+&lt;span style="color:#75715e"># Dapr Port 확인 : 3500&lt;/span>
+apt install -y net-tools
+netstat -nap | grep LISTEN | grep daprd
+&lt;span style="color:#75715e"># 상태 쓰기&lt;/span>
+curl -X POST -H &lt;span style="color:#e6db74">&amp;#34;Content-Type: application/json&amp;#34;&lt;/span> -d &lt;span style="color:#e6db74">&amp;#39;[{ &amp;#34;key&amp;#34;: &amp;#34;name&amp;#34;, &amp;#34;value&amp;#34;: &amp;#34;Bruce Wayne&amp;#34;}]&amp;#39;&lt;/span> http://localhost:3500/v1.0/state/statestore
+&lt;span style="color:#75715e"># 상태 읽기&lt;/span>
+curl -X GET http://localhost:3500/v1.0/state/statestore/name
+&lt;span style="color:#75715e"># Redis 컨테이너 접속&lt;/span>
+docker container exec -it dapr_redis redis-cli
+&lt;span style="color:#75715e"># Redis 키 목록 확인&lt;/span>
+keys *
+&lt;span style="color:#75715e"># Redis 값 확인&lt;/span>
+hgetall &lt;span style="color:#e6db74">&amp;#34;myapp||name&amp;#34;&lt;/span>
+&lt;span style="color:#75715e"># Redis 컨테이너 나오기&lt;/span>
+exit
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="dapr-sidecar-실행">Dapr sidecar 실행&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>dapr run --app-id myapp --dapr-http-port 3500&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>--app-id&lt;/code> : 프로그램 고유 ID&lt;/li>
+&lt;li>&lt;code>--dapr-http-port&lt;/code> : HTTP 포트&lt;/li>
+&lt;li>그 외 기본 옵션 : &lt;code>ps -ef | grep daprd&lt;/code>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">/root/.dapr/bin/daprd
+--app-id myapp
+--dapr-http-port &lt;span style="color:#ae81ff">3500&lt;/span>
+--dapr-grpc-port &lt;span style="color:#ae81ff">34531&lt;/span>
+--log-level info
+--app-max-concurrency -1
+--app-protocol http
+--components-path /root/.dapr/components
+--metrics-port &lt;span style="color:#ae81ff">45175&lt;/span>
+--dapr-http-max-request-size -1
+--placement-host-address localhost:50005
+--config /root/.dapr/config.yaml
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>실행 과정
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">root@HHKO-LABTOP:~# dapr run --app-id myapp --dapr-http-port &lt;span style="color:#ae81ff">3500&lt;/span>
+WARNING: no application command found.
+ℹ️ Starting Dapr with id myapp. HTTP Port: 3500. gRPC Port: &lt;span style="color:#ae81ff">42367&lt;/span>
+ℹ️ Checking &lt;span style="color:#66d9ef">if&lt;/span> Dapr sidecar is listening on HTTP port &lt;span style="color:#ae81ff">3500&lt;/span>
+...
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>포트 오픈 확인
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># netstat 명령어를 위한 패키지 설치&lt;/span>
+apt install -y net-tools
+root@HHKO-LABTOP:~# netstat -nap | grep LISTEN | grep daprd
+tcp6 &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> :::45175 :::* LISTEN 2934/daprd
+tcp6 &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> :::35043 :::* LISTEN 2934/daprd
+tcp6 &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> :::34531 :::* LISTEN 2934/daprd
+tcp6 &lt;span style="color:#ae81ff">0&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span> :::3500 :::* LISTEN 2934/daprd
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>열린 포트
+&lt;ul>
+&lt;li>&lt;code>45175&lt;/code> : &amp;ndash;metrics-port&lt;/li>
+&lt;li>&lt;code>35043&lt;/code> : ?&lt;/li>
+&lt;li>&lt;code>34531&lt;/code> : &amp;ndash;dapr-grpc-port&lt;/li>
+&lt;li>&lt;code>3500&lt;/code> : &amp;ndash;dapr-http-port&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>netstat&lt;/code> 명령어 옵션
+&lt;ul>
+&lt;li>&lt;code>-n&lt;/code>, &lt;code>--numeric&lt;/code> : don&amp;rsquo;t resolve names&lt;/li>
+&lt;li>&lt;code>-a&lt;/code>, &lt;code>--all&lt;/code> : display all sockets (default: connected)&lt;/li>
+&lt;li>&lt;code>-p&lt;/code>, &lt;code>--programs&lt;/code> : display PID/Program name for sockets&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="dapr-sidecar-상태-쓰기">Dapr sidecar 상태 쓰기&lt;/h2>
+&lt;ul>
+&lt;li>데이터
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">[
+{
+&lt;span style="color:#f92672">&amp;#34;key&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;name&amp;#34;&lt;/span>,
+&lt;span style="color:#f92672">&amp;#34;value&amp;#34;&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;Bruce Wayne&amp;#34;&lt;/span>
+}
+]
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>상태 쓰기 HTTP API
+&lt;pre tabindex="0">&lt;code>curl -X POST -H &amp;quot;Content-Type: application/json&amp;quot; -d '[{ &amp;quot;key&amp;quot;: &amp;quot;name&amp;quot;, &amp;quot;value&amp;quot;: &amp;quot;Bruce Wayne&amp;quot;}]' http://localhost:3500/v1.0/state/statestore
+&lt;/code>&lt;/pre>&lt;ul>
+&lt;li>HTTP API Mehtod : POST&lt;/li>
+&lt;li>HTTP API URL : http://localhost:3500/v1.0/state/statestore&lt;/li>
+&lt;li>HTTP API Value : &amp;lsquo;[{ &amp;ldquo;key&amp;rdquo;: &amp;ldquo;name&amp;rdquo;, &amp;ldquo;value&amp;rdquo;: &amp;ldquo;Bruce Wayne&amp;rdquo;}]&amp;rsquo;&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="dapr-sidecar-상태-읽기">Dapr sidecar 상태 읽기&lt;/h2>
+&lt;ul>
+&lt;li>상태 읽기 HTTP API
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl http://localhost:3500/v1.0/state/statestore/name
+curl -X GET http://localhost:3500/v1.0/state/statestore/name
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>상태 읽기 결과
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">root@HHKO-LABTOP:~# curl http://localhost:3500/v1.0/state/statestore/name
+&lt;span style="color:#e6db74">&amp;#34;Bruce Wayne&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="dapr-sidecar-상태-삭제">Dapr sidecar 상태 삭제&lt;/h2>
+&lt;ul>
+&lt;li>상태 삭제 HTTP API
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl -X DELETE http://localhost:3500/v1.0/state/statestore/name
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="redis-데이터-확인">Redis 데이터 확인&lt;/h2>
+&lt;ul>
+&lt;li>Redis 컨테이너 접속
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">docker container exec -it dapr_redis redis-cli
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>Redis 키 확인
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">keys *
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>실행 결과
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">127.0.0.1:6379&amp;gt; keys *
+1&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#e6db74">&amp;#34;myapp||name&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>myapp&lt;/code> : &amp;ndash;app-id 값&lt;/li>
+&lt;li>&lt;code>name&lt;/code> : Json Key 값&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Redis 값 확인
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">hgetall &lt;span style="color:#e6db74">&amp;#34;myapp||name&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>실행 결과
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">127.0.0.1:6379&amp;gt; hgetall &lt;span style="color:#e6db74">&amp;#34;myapp||name&amp;#34;&lt;/span>
+1&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>
+2&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#e6db74">&amp;#34;\&amp;#34;Bruce Wayne\&amp;#34;&amp;#34;&lt;/span>
+3&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#e6db74">&amp;#34;version&amp;#34;&lt;/span>
+4&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#e6db74">&amp;#34;1&amp;#34;&lt;/span>
+127.0.0.1:6379&amp;gt; exit
+root@HHKO-LABTOP:~#
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="todo">TODO&lt;/h2>
+&lt;ul>
+&lt;li>Background 실행&lt;/li>
+&lt;li>컨테이너와 daprd 관계 이해?&lt;/li>
+&lt;/ul></description></item><item><title>Learned: Secrets Component</title><link>https://hhko.github.io/learned/dapr/helloworld/component/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/component/</guid><description>
+&lt;h2 id="명령어-요약">명령어 요약&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># Secrets 파일 생성 : mysecrets.json&lt;/span>
+&lt;span style="color:#f92672">{&lt;/span>
+&lt;span style="color:#e6db74">&amp;#34;my-secret&amp;#34;&lt;/span> : &lt;span style="color:#e6db74">&amp;#34;I&amp;#39;m Batman&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">}&lt;/span>
+&lt;span style="color:#75715e"># Component 폴더 생성 : my-components &lt;/span>
+mkdir my-components
+&lt;span style="color:#75715e"># Component 설정 파일 : localSecretStore.yaml&lt;/span>
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+name: my-secret-store
+namespace: default
+spec:
+type: secretstores.local.file &lt;span style="color:#75715e"># secrets 로컬 파일 설정&lt;/span>
+version: v1
+metadata:
+- name: secretsFile
+value: ./mysecrets.json &lt;span style="color:#75715e"># secrets 파일 지정 &lt;/span>
+- name: nestedSeparator
+value: &lt;span style="color:#e6db74">&amp;#34;:&amp;#34;&lt;/span>
+&lt;span style="color:#75715e"># Dapr 실행&lt;/span>
+dapr run --app-id myapp --dapr-http-port &lt;span style="color:#ae81ff">3500&lt;/span> --components-path ./my-components
+&lt;span style="color:#75715e"># Secrets 값 읽기&lt;/span>
+curl http://localhost:3500/v1.0/secrets/my-secret-store/my-secret
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="secret-파일-생성">Secret 파일 생성&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>mysecrets.json&lt;/code> 파일
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
+&lt;span style="color:#f92672">&amp;#34;my-secret&amp;#34;&lt;/span> : &lt;span style="color:#e6db74">&amp;#34;I&amp;#39;m Batman&amp;#34;&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h1 id="component-생성">Component 생성&lt;/h1>
+&lt;ul>
+&lt;li>Component 폴더
+&lt;ul>
+&lt;li>&lt;code>mkdir my-components&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Component 설정 파일
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">dapr.io/v1alpha1&lt;/span>
+&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
+&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">my-secret-store&lt;/span>
+&lt;span style="color:#f92672">namespace&lt;/span>: &lt;span style="color:#ae81ff">default&lt;/span>
+&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;span style="color:#f92672">type&lt;/span>: &lt;span style="color:#ae81ff">secretstores.local.file&lt;/span>
+&lt;span style="color:#f92672">version&lt;/span>: &lt;span style="color:#ae81ff">v1&lt;/span>
+&lt;span style="color:#f92672">metadata&lt;/span>:
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">secretsFile&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">./mysecrets.json&lt;/span>
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">nestedSeparator&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;:&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>secretstores.local.file&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>secrets&lt;/code> 지정&lt;/li>
+&lt;li>&lt;code>./mysecrets.json&lt;/code> : &lt;code>.&lt;/code> 경로는 dapr run 위치이다.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="dapr-sidecar-실행">Dapr sidecar 실행&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">dapr run --app-id myapp --dapr-http-port &lt;span style="color:#ae81ff">3500&lt;/span> --components-path ./my-components
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>--components-path&lt;/code> : ./my-components&lt;/li>
+&lt;li>&lt;code>.&lt;/code> : &lt;code>dapr run&lt;/code>을 실행한 현재 경로이다.&lt;/li>
+&lt;/ul>
+&lt;h2 id="secret-값-읽기">Secret 값 읽기&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">curl http://localhost:3500/v1.0/secrets/my-secret-store/my-secret
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>my-secret-store&lt;/li>
+&lt;li>my-secret : json 파일 데이터 키&lt;/li>
+&lt;/ul></description></item></channel></rss>
