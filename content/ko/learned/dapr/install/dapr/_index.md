@@ -1,5 +1,5 @@
 ---
-title: Dapr 설치
+title: Dapr
 #linkTitle: OpenSearch 링크 제목
 description: Ubuntu 20.04 LTS 환경에서 Dapr 설치
 type: docs
