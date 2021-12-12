@@ -223,7 +223,7 @@ sudo chown root:root /etc/apt/sources.list.d/microsoft-prod.list
 sudo apt update; &lt;span style="color:#ae81ff">\
 &lt;/span>&lt;span style="color:#ae81ff">&lt;/span> sudo apt install -y apt-transport-https &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#ae81ff">\
 &lt;/span>&lt;span style="color:#ae81ff">&lt;/span> sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#ae81ff">\
-&lt;/span>&lt;span style="color:#ae81ff">&lt;/span> sudo apt install -y dotnet-sdk-6.0
+&lt;/span>&lt;span style="color:#ae81ff">&lt;/span> sudo apt install -y dotnet-sdk-6.0 aspnetcore-runtime-6.0
 &lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>&lt;code>dotnet-sdk-6.0&lt;/code> : &lt;code>aspnetcore-runtime-6.0&lt;/code>와 &lt;code>dotnet-runtime-6.0&lt;/code>을 포함한다.&lt;/li>
 &lt;li>&lt;code>aspnetcore-runtime-6.0&lt;/code>&lt;/li>
@@ -255,6 +255,10 @@ sudo apt update; &lt;span style="color:#ae81ff">\
 &lt;/li>
 &lt;/ul>
 &lt;h2 id="net-60-패키지-설치-확인">.NET 6.0 패키지 설치 확인&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>apt list --installed | grep dotnet&lt;/code>&lt;/li>
+&lt;li>&lt;code>apt list --installed | grep aspnetcore&lt;/code>&lt;/li>
+&lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># .NET 6.0 패키지 설치 확인&lt;/span>
 root@HHKO-LABTOP:~# apt list --installed | grep dotnet
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
@@ -266,6 +270,8 @@ dotnet-runtime-deps-6.0/focal,now 6.0.0-1 amd64 &lt;span style="color:#f92672">[
 dotnet-sdk-6.0/focal,now 6.0.100-1 amd64 &lt;span style="color:#f92672">[&lt;/span>installed&lt;span style="color:#f92672">]&lt;/span>
 dotnet-targeting-pack-6.0/focal,now 6.0.0-1 amd64 &lt;span style="color:#f92672">[&lt;/span>installed,automatic&lt;span style="color:#f92672">]&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>설치 파일
+&lt;ul>
 &lt;li>dotnet-sdk-6.0
 &lt;ul>
 &lt;li>dotnet-sdk-6.0/focal&lt;/li>
@@ -300,6 +306,8 @@ dotnet-targeting-pack-6.0/focal,now 6.0.0-1 amd64 &lt;span style="color:#f92672"
 &lt;li>dotnet-runtime-deps-6.0/focal&lt;/li>
 &lt;li>dotnet-host/focal&lt;/li>
 &lt;li>dotnet-hostfxr-6.0/focal&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>

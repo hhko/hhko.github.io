@@ -79,14 +79,28 @@
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-learneddaprhelloworld-li>
 <a href=/learned/dapr/helloworld/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworld><span>Helloworld 예제</span></a>
 <ul class="ul-3 foldable">
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldstate-api-li>
-<a href=/learned/dapr/helloworld/state-api/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate-api><span>State API</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldstate-csharp-li>
-<a href=/learned/dapr/helloworld/state-csharp/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate-csharp><span>State C#</span></a>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-learneddaprhelloworldstate-li>
+<a href=/learned/dapr/helloworld/state/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate><span>State</span></a>
+<ul class="ul-4 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldstatestate-api-li>
+<a href=/learned/dapr/helloworld/state/state-api/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstatestate-api><span>State API</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldstatestate-csharp-li>
+<a href=/learned/dapr/helloworld/state/state-csharp/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstatestate-csharp><span>State C#</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-learneddaprhelloworldwebapi-li>
+<a href=/learned/dapr/helloworld/webapi/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapi><span>WebAPI</span></a>
+<ul class="ul-4 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldwebapidaprized-li>
+<a href=/learned/dapr/helloworld/webapi/daprized/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapidaprized><span>WebAPI 1. Daprized</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldwebapidebugging-li>
+<a href=/learned/dapr/helloworld/webapi/debugging/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapidebugging><span>WebAPI 1. Debugging</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldwebapicontainerized-li>
+<a href=/learned/dapr/helloworld/webapi/containerized/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapicontainerized><span>WebAPI 2. Containerized</span></a>
+</li>
+</ul>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldcomponent-li>
 <a href=/learned/dapr/helloworld/component/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldcomponent><span>Secrets Component</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldwebapi-containerized-li>
-<a href=/learned/dapr/helloworld/webapi-containerized/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapi-containerized><span></span></a>
 </li>
 </ul>
 </li>
@@ -161,7 +175,7 @@ sudo chown root:root /etc/apt/sources.list.d/microsoft-prod.list
 sudo apt update; <span style=color:#ae81ff>\
 </span><span style=color:#ae81ff></span>  sudo apt install -y apt-transport-https <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
 </span><span style=color:#ae81ff></span>  sudo apt update <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
-</span><span style=color:#ae81ff></span>  sudo apt install -y dotnet-sdk-6.0
+</span><span style=color:#ae81ff></span>  sudo apt install -y dotnet-sdk-6.0 aspnetcore-runtime-6.0
 </code></pre></div><ul>
 <li><code>dotnet-sdk-6.0</code> : <code>aspnetcore-runtime-6.0</code>와 <code>dotnet-runtime-6.0</code>을 포함한다.</li>
 <li><code>aspnetcore-runtime-6.0</code></li>
@@ -193,6 +207,10 @@ sudo apt update; <span style=color:#ae81ff>\
 </li>
 </ul>
 <h2 id=net-60-패키지-설치-확인>.NET 6.0 패키지 설치 확인</h2>
+<ul>
+<li><code>apt list --installed | grep dotnet</code></li>
+<li><code>apt list --installed | grep aspnetcore</code></li>
+</ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># .NET 6.0 패키지 설치 확인</span>
 root@HHKO-LABTOP:~# apt list --installed | grep dotnet
 
@@ -206,6 +224,8 @@ dotnet-runtime-deps-6.0/focal,now 6.0.0-1 amd64 <span style=color:#f92672>[</spa
 dotnet-sdk-6.0/focal,now 6.0.100-1 amd64 <span style=color:#f92672>[</span>installed<span style=color:#f92672>]</span>
 dotnet-targeting-pack-6.0/focal,now 6.0.0-1 amd64 <span style=color:#f92672>[</span>installed,automatic<span style=color:#f92672>]</span>
 </code></pre></div><ul>
+<li>설치 파일
+<ul>
 <li>dotnet-sdk-6.0
 <ul>
 <li>dotnet-sdk-6.0/focal</li>
@@ -240,6 +260,8 @@ dotnet-targeting-pack-6.0/focal,now 6.0.0-1 amd64 <span style=color:#f92672>[</s
 <li>dotnet-runtime-deps-6.0/focal</li>
 <li>dotnet-host/focal</li>
 <li>dotnet-hostfxr-6.0/focal</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

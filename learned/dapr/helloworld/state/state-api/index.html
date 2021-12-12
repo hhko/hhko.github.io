@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=generator content="Hugo 0.89.4">
-<link rel=alternate type=application/rss+xml href=https://hhko.github.io/learned/dapr/helloworld/state-api/index.xml>
+<link rel=alternate type=application/rss+xml href=https://hhko.github.io/learned/dapr/helloworld/state/state-api/index.xml>
 <meta name=robots content="index, follow">
 <link rel="shortcut icon" href=/favicons/favicon.ico>
 <link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180>
@@ -20,7 +20,7 @@
 <meta property="og:title" content="State API">
 <meta property="og:description" content="Redis 상태 읽기 및 쓰기 예제">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://hhko.github.io/learned/dapr/helloworld/state-api/"><meta property="og:site_name" content="배움은 설렘이다">
+<meta property="og:url" content="https://hhko.github.io/learned/dapr/helloworld/state/state-api/"><meta property="og:site_name" content="배움은 설렘이다">
 <meta itemprop=name content="State API">
 <meta itemprop=description content="Redis 상태 읽기 및 쓰기 예제"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="State API">
@@ -79,14 +79,28 @@
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learneddaprhelloworld-li>
 <a href=/learned/dapr/helloworld/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworld><span>Helloworld 예제</span></a>
 <ul class="ul-3 foldable">
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-learneddaprhelloworldstate-api-li>
-<a href=/learned/dapr/helloworld/state-api/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate-api><span class=td-sidebar-nav-active-item>State API</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldstate-csharp-li>
-<a href=/learned/dapr/helloworld/state-csharp/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate-csharp><span>State C#</span></a>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learneddaprhelloworldstate-li>
+<a href=/learned/dapr/helloworld/state/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate><span>State</span></a>
+<ul class="ul-4 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-learneddaprhelloworldstatestate-api-li>
+<a href=/learned/dapr/helloworld/state/state-api/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstatestate-api><span class=td-sidebar-nav-active-item>State API</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldstatestate-csharp-li>
+<a href=/learned/dapr/helloworld/state/state-csharp/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstatestate-csharp><span>State C#</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-learneddaprhelloworldwebapi-li>
+<a href=/learned/dapr/helloworld/webapi/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapi><span>WebAPI</span></a>
+<ul class="ul-4 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldwebapidaprized-li>
+<a href=/learned/dapr/helloworld/webapi/daprized/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapidaprized><span>WebAPI 1. Daprized</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldwebapidebugging-li>
+<a href=/learned/dapr/helloworld/webapi/debugging/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapidebugging><span>WebAPI 1. Debugging</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldwebapicontainerized-li>
+<a href=/learned/dapr/helloworld/webapi/containerized/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapicontainerized><span>WebAPI 2. Containerized</span></a>
+</li>
+</ul>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldcomponent-li>
 <a href=/learned/dapr/helloworld/component/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldcomponent><span>Secrets Component</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldwebapi-containerized-li>
-<a href=/learned/dapr/helloworld/webapi-containerized/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapi-containerized><span></span></a>
 </li>
 </ul>
 </li>
@@ -134,8 +148,11 @@
 <li class=breadcrumb-item>
 <a href=https://hhko.github.io/learned/dapr/helloworld/>Helloworld 예제</a>
 </li>
+<li class=breadcrumb-item>
+<a href=https://hhko.github.io/learned/dapr/helloworld/state/>State</a>
+</li>
 <li class="breadcrumb-item active" aria-current=page>
-<a href=https://hhko.github.io/learned/dapr/helloworld/state-api/>State API</a>
+<a href=https://hhko.github.io/learned/dapr/helloworld/state/state-api/>State API</a>
 </li>
 </ol>
 </nav>

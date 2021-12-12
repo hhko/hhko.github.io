@@ -1,0 +1,234 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>배움은 설렘이다 – WebAPI</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/</link><description>Recent content in WebAPI on 배움은 설렘이다</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><atom:link href="https://hhko.github.io/learned/dapr/helloworld/webapi/index.xml" rel="self" type="application/rss+xml"/><item><title>Learned: WebAPI 1. Daprized</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/daprized/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi/daprized/</guid><description>
+&lt;ul>
+&lt;li>소스 : &lt;a href="./MyBackEnd">링크&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="webapi-c-프로젝트">WebAPI C# 프로젝트&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># WebAPI 프로젝트 생성&lt;/span>
+dotnet new webapi -o MyBackEnd --no-https
+cd MyBackEnd
+dotnet run
+Building...
+info: Microsoft.Hosting.Lifetime&lt;span style="color:#f92672">[&lt;/span>14&lt;span style="color:#f92672">]&lt;/span>
+Now listening on: http://localhost:5212
+info: Microsoft.Hosting.Lifetime&lt;span style="color:#f92672">[&lt;/span>0&lt;span style="color:#f92672">]&lt;/span>
+Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime&lt;span style="color:#f92672">[&lt;/span>0&lt;span style="color:#f92672">]&lt;/span>
+Hosting environment: Development
+info: Microsoft.Hosting.Lifetime&lt;span style="color:#f92672">[&lt;/span>0&lt;span style="color:#f92672">]&lt;/span>
+Content root path: /github/MyBackEnd/
+&lt;span style="color:#75715e"># WebAPI 호출&lt;/span>
+http://localhost:5212/weatherforecast
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="./myybackend.png" alt="">&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>5212&lt;/code> 포트 사용&lt;/li>
+&lt;/ul>
+&lt;h2 id="webapi-dapr-sidecar-실행">WebAPI Dapr sidecar 실행&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">dapr run --app-id myybackend --app-port &lt;span style="color:#ae81ff">5212&lt;/span> --dapr-http-port &lt;span style="color:#ae81ff">3500&lt;/span> dotnet run
+ℹ️ Starting Dapr with id myybackend. HTTP Port: 3500. gRPC Port: &lt;span style="color:#ae81ff">43681&lt;/span>
+...
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Building...
+ℹ️ Updating metadata &lt;span style="color:#66d9ef">for&lt;/span> app command: dotnet run
+✅ You&lt;span style="color:#960050;background-color:#1e0010">&amp;#39;&lt;/span>re up and running! Both Dapr and your app logs will appear here.
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> info: Microsoft.Hosting.Lifetime&lt;span style="color:#f92672">[&lt;/span>14&lt;span style="color:#f92672">]&lt;/span>
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Now listening on: http://localhost:5212
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> info: Microsoft.Hosting.Lifetime&lt;span style="color:#f92672">[&lt;/span>0&lt;span style="color:#f92672">]&lt;/span>
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Application started. Press Ctrl+C to shut down.
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> info: Microsoft.Hosting.Lifetime&lt;span style="color:#f92672">[&lt;/span>0&lt;span style="color:#f92672">]&lt;/span>
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Hosting environment: Development
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> info: Microsoft.Hosting.Lifetime&lt;span style="color:#f92672">[&lt;/span>0&lt;span style="color:#f92672">]&lt;/span>
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Content root path: /github/myybackend/
+http://localhost:5212/weatherforecast
+http://localhost:3500/v1.0/invoke/myybackend/method/weatherforecast
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;img src="./myybackend-dapr.png" alt="">&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>--app-id&lt;/code> myybackend : Dapr sidecar 식별 이름&lt;/li>
+&lt;li>&lt;code>--app-port&lt;/code> 5212 : WebAPI 프로젝트 포트(&lt;strong>※ WebAPI 포트와 일치해야 한다.&lt;/strong>)&lt;/li>
+&lt;li>&lt;code>--dapr-http-port&lt;/code> 3500 : Dapr HTTP API 포트&lt;/li>
+&lt;li>&lt;code>dotnet run&lt;/code> : Dapr 관리 프로세스&lt;/li>
+&lt;/ul>
+&lt;h2 id="dapr-주요-명령어">Dapr 주요 명령어&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>dapr list&lt;/code>&lt;br>
+&lt;img src="./dapr-list.png" alt="">&lt;/li>
+&lt;li>&lt;code>dapr dashboard&lt;/code>&lt;br>
+&lt;img src="./dapr-dashboard.png" alt="">&lt;/li>
+&lt;/ul></description></item><item><title>Learned: WebAPI 1. Debugging</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/debugging/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi/debugging/</guid><description>
+&lt;ul>
+&lt;li>&lt;a href="https://www.youtube.com/watch?v=j_Vb-VDJQB4&amp;amp;list=PLLajsYIn6RRTAOM2vIs2pz_p2JXnCd74Y&amp;amp;index=6">https://www.youtube.com/watch?v=j_Vb-VDJQB4&amp;amp;list=PLLajsYIn6RRTAOM2vIs2pz_p2JXnCd74Y&amp;amp;index=6&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Learned: WebAPI 2. Containerized</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/containerized/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi/containerized/</guid><description>
+&lt;ul>
+&lt;li>소스 : &lt;a href="./MyBackEnd">링크&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="webapi-c-프로젝트">WebAPI C# 프로젝트&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;h1 id="webapi-프로젝트-생성">WebAPI 프로젝트 생성&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">dotnet new webapi -o MyBackEnd --no-https
+cd MyBackEnd
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;code>Dockerfile&lt;/code> 생성
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-dockerfile" data-lang="dockerfile">&lt;span style="color:#66d9ef">FROM&lt;/span>&lt;span style="color:#e6db74"> mcr.microsoft.com/dotnet/aspnet:6.0 AS base&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">WORKDIR&lt;/span>&lt;span style="color:#e6db74"> /app&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">EXPOSE&lt;/span>&lt;span style="color:#e6db74"> 80&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">FROM&lt;/span>&lt;span style="color:#e6db74"> mcr.microsoft.com/dotnet/sdk:6.0 AS build&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">WORKDIR&lt;/span>&lt;span style="color:#e6db74"> /src&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">COPY&lt;/span> &lt;span style="color:#f92672">[&lt;/span>&lt;span style="color:#e6db74">&amp;#34;MyBackEnd/MyBackEnd.csproj&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;MyBackEnd/&amp;#34;&lt;/span>&lt;span style="color:#f92672">]&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">RUN&lt;/span> dotnet restore &lt;span style="color:#e6db74">&amp;#34;MyBackEnd/MyBackEnd.csproj&amp;#34;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">COPY&lt;/span> . .&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">WORKDIR&lt;/span>&lt;span style="color:#e6db74"> &amp;#34;/src/MyBackEnd&amp;#34;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">RUN&lt;/span> dotnet build &lt;span style="color:#e6db74">&amp;#34;MyBackEnd.csproj&amp;#34;&lt;/span> -c Release -o /app/build&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">FROM&lt;/span>&lt;span style="color:#e6db74"> build AS publish&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">RUN&lt;/span> dotnet publish &lt;span style="color:#e6db74">&amp;#34;MyBackEnd.csproj&amp;#34;&lt;/span> -c Release -o /app/publish&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">FROM&lt;/span>&lt;span style="color:#e6db74"> base AS final&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">WORKDIR&lt;/span>&lt;span style="color:#e6db74"> /app&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">COPY&lt;/span> --from&lt;span style="color:#f92672">=&lt;/span>publish /app/publish .&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">ENTRYPOINT&lt;/span> [&lt;span style="color:#e6db74">&amp;#34;dotnet&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;MyBackEnd.dll&amp;#34;&lt;/span>]&lt;span style="color:#960050;background-color:#1e0010">
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>&lt;code>docker-compose.yml&lt;/code> 파일 생성
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">version&lt;/span>: &lt;span style="color:#e6db74">&amp;#39;3.4&amp;#39;&lt;/span>
+&lt;span style="color:#f92672">services&lt;/span>:
+&lt;span style="color:#f92672">mybackend&lt;/span>:
+&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#ae81ff">mybackend&lt;/span>
+&lt;span style="color:#f92672">build&lt;/span>:
+&lt;span style="color:#f92672">context&lt;/span>: &lt;span style="color:#ae81ff">.&lt;/span>
+&lt;span style="color:#f92672">dockerfile&lt;/span>: &lt;span style="color:#ae81ff">./Dockerfile&lt;/span>
+&lt;span style="color:#f92672">ports&lt;/span>:
+- &lt;span style="color:#e6db74">&amp;#34;52000:50001&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">mybackend-dapr&lt;/span>:
+&lt;span style="color:#f92672">image&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;daprio/daprd:1.5.1&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">command&lt;/span>: [ &lt;span style="color:#e6db74">&amp;#34;./daprd&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;-app-id&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;MyBackEnd&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;-app-port&amp;#34;&lt;/span>, &lt;span style="color:#e6db74">&amp;#34;80&amp;#34;&lt;/span> ]
+&lt;span style="color:#f92672">depends_on&lt;/span>:
+- &lt;span style="color:#ae81ff">mybackend&lt;/span>
+&lt;span style="color:#f92672">network_mode&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;service:mybackend&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;p>.NET Core Web App
+&amp;ndash;no-https&lt;/p>
+&lt;p>MyFrontEnd
+DaprMultiContainer&lt;/p>
+&lt;p>Install-Package Dapr.AspNetCore&lt;/p>
+&lt;p>Program.cs
+builder.Services.AddDaprClient();&lt;/p>
+&lt;p>WeatherForecast.cs
+namespace MyFrontEnd;&lt;/p>
+&lt;p>public class WeatherForecast
+{
+public DateTime Date { get; set; }&lt;/p>
+&lt;pre>&lt;code>public int TemperatureC { get; set; }
+public int TemperatureF { get; set; }
+public string Summary { get; set; } = string.Empty;
+&lt;/code>&lt;/pre>
+&lt;p>}&lt;/p>
+&lt;p>index.cshtml
+using Dapr.Client;
+using Microsoft.AspNetCore.Mvc.RazorPages;&lt;/p>
+&lt;p>namespace MyFrontEnd.Pages;&lt;/p>
+&lt;p>public class IndexModel : PageModel
+{
+private readonly DaprClient _daprClient;&lt;/p>
+&lt;pre>&lt;code>public IndexModel(DaprClient daprClient)
+{
+_daprClient = daprClient;
+}
+public async Task OnGet()
+{
+var forecasts = await _daprClient.InvokeMethodAsync&amp;lt;IEnumerable&amp;lt;WeatherForecast&amp;gt;&amp;gt;(
+HttpMethod.Get,
+&amp;quot;MyBackEnd&amp;quot;,
+&amp;quot;weatherforecast&amp;quot;);
+ViewData[&amp;quot;WeatherForecastData&amp;quot;] = forecasts;
+}
+&lt;/code>&lt;/pre>
+&lt;p>}&lt;/p>
+&lt;ul>
+&lt;li>OnGet메서드는 사용자가 홈 페이지를 방문할 때마다 호출 됩니다.&lt;/li>
+&lt;/ul>
+&lt;p>@page
+@model IndexModel
+@{
+ViewData[&amp;ldquo;Title&amp;rdquo;] = &amp;ldquo;Home page&amp;rdquo;;
+}&lt;/p>
+&lt;div class="text-center">
+&lt;h1 class="display-4">Welcome&lt;/h1>
+&lt;p>Learn about &lt;a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core&lt;/a>.&lt;/p>
+@foreach (var forecast in (IEnumerable&lt;WeatherForecast>)ViewData["WeatherForecastData"]!)
+{
+&lt;p>The forecast for @forecast.Date is @forecast.Summary!&lt;/p>
+}
+&lt;/div>
+&lt;p>Docker-compose.ci.build.yml
+version: &amp;lsquo;3.4&amp;rsquo;&lt;/p>
+&lt;p>services:
+myfrontend:
+image: ${DOCKER_REGISTRY-}myfrontend
+build:
+context: .
+dockerfile: MyFrontEnd/Dockerfile&lt;/p>
+&lt;p>Dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443&lt;/p>
+&lt;p>FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY [&amp;ldquo;MyFrontEnd/MyFrontEnd.csproj&amp;rdquo;, &amp;ldquo;MyFrontEnd/&amp;quot;]
+RUN dotnet restore &amp;ldquo;MyFrontEnd/MyFrontEnd.csproj&amp;rdquo;
+COPY . .
+WORKDIR &amp;ldquo;/src/MyFrontEnd&amp;rdquo;
+RUN dotnet build &amp;ldquo;MyFrontEnd.csproj&amp;rdquo; -c Release -o /app/build&lt;/p>
+&lt;p>FROM build AS publish
+RUN dotnet publish &amp;ldquo;MyFrontEnd.csproj&amp;rdquo; -c Release -o /app/publish&lt;/p>
+&lt;p>FROM base AS final
+WORKDIR /app
+COPY &amp;ndash;from=publish /app/publish .
+ENTRYPOINT [&amp;ldquo;dotnet&amp;rdquo;, &amp;ldquo;MyFrontEnd.dll&amp;rdquo;]&lt;/p>
+&lt;p>.NET Core Web API
+MyBackEnd&lt;/p>
+&lt;p>Dockerfile&lt;/p>
+&lt;p>Docker-compose.ci.build.yml
+version: &amp;lsquo;3.4&amp;rsquo;&lt;/p>
+&lt;p>services:
+myfrontend:
+image: ${DOCKER_REGISTRY-}myfrontend
+build:
+context: .
+dockerfile: MyFrontEnd/Dockerfile&lt;/p>
+&lt;p>mybackend:
+image: ${DOCKER_REGISTRY-}mybackend
+build:
+context: .
+dockerfile: MyBackEnd/Dockerfile&lt;/p>
+&lt;p>Docker-compose.ci.build.yml
+version: &amp;lsquo;3.4&amp;rsquo;&lt;/p>
+&lt;p>services:
+myfrontend:
+image: ${DOCKER_REGISTRY-}myfrontend
+build:
+context: .
+dockerfile: MyFrontEnd/Dockerfile
+ports:
+- &amp;ldquo;51000:50001&amp;rdquo;&lt;/p>
+&lt;p>myfrontend-dapr:
+image: &amp;ldquo;daprio/daprd:latest&amp;rdquo;
+command: [ &amp;ldquo;./daprd&amp;rdquo;, &amp;ldquo;-app-id&amp;rdquo;, &amp;ldquo;MyFrontEnd&amp;rdquo;, &amp;ldquo;-app-port&amp;rdquo;, &amp;ldquo;80&amp;rdquo; ]
+depends_on:
+- myfrontend
+network_mode: &amp;ldquo;service:myfrontend&amp;rdquo;&lt;/p>
+&lt;p>mybackend:
+image: ${DOCKER_REGISTRY-}mybackend
+build:
+context: .
+dockerfile: MyBackEnd/Dockerfile
+ports:
+- &amp;ldquo;52000:50001&amp;rdquo;&lt;/p>
+&lt;p>mybackend-dapr:
+image: &amp;ldquo;daprio/daprd:latest&amp;rdquo;
+command: [ &amp;ldquo;./daprd&amp;rdquo;, &amp;ldquo;-app-id&amp;rdquo;, &amp;ldquo;MyBackEnd&amp;rdquo;, &amp;ldquo;-app-port&amp;rdquo;, &amp;ldquo;80&amp;rdquo; ]
+depends_on:
+- mybackend
+network_mode: &amp;ldquo;service:mybackend&amp;rdquo;&lt;/p>
+&lt;p>daprio/daprd:latest -&amp;gt;
+gRPC 50001?&lt;/p></description></item></channel></rss>
