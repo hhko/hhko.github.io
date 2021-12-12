@@ -68,12 +68,12 @@
 <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-learneddaprinstall-li>
 <a href=/learned/dapr/install/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstall><span>설치</span></a>
 <ul class="ul-3 foldable">
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstalldapr-li>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstallwsl-li>
+<a href=/learned/dapr/install/wsl/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstallwsl><span>Ubuntu 20.04</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstalldapr-li>
 <a href=/learned/dapr/install/dapr/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldapr><span>Dapr</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstalldotnet-li>
 <a href=/learned/dapr/install/dotnet/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldotnet><span>.NET 6.0</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstallwsl-li>
-<a href=/learned/dapr/install/wsl/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstallwsl><span>Ubuntu 20.04 LTS</span></a>
 </li>
 </ul>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learneddaprhelloworld-li>
@@ -85,6 +85,8 @@
 <a href=/learned/dapr/helloworld/state-csharp/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate-csharp><span class=td-sidebar-nav-active-item>State C#</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldcomponent-li>
 <a href=/learned/dapr/helloworld/component/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldcomponent><span>Secrets Component</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldwebapi-containerized-li>
+<a href=/learned/dapr/helloworld/webapi-containerized/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldwebapi-containerized><span></span></a>
 </li>
 </ul>
 </li>
@@ -142,6 +144,9 @@
 <div class=lead>Redis 상태 읽기 및 쓰기 예제</div>
 <header class=article-meta>
 </header>
+<ul>
+<li>소스 : <a href=./DaprCounter>링크</a></li>
+</ul>
 <h2 id=명령어-요약>명령어 요약</h2>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># 콘솔 프로젝트 생성</span>
 dotnet new console -o DaprCounter
@@ -162,7 +167,6 @@ keys *
 hgetall <span style=color:#e6db74>&#34;DaprCounter||counter&#34;</span>
 </code></pre></div><h2 id=net-60-콘솔-프로젝트-생성>.NET 6.0 콘솔 프로젝트 생성</h2>
 <ul>
-<li>소스 : <a href=./DaprCounter>링크</a></li>
 <li>콘솔 프로젝트 생성
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>dotnet new console -o DaprCounter
 cd DaprCounter

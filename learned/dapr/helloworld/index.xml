@@ -147,6 +147,9 @@ root@HHKO-LABTOP:~#
 &lt;li>Background 실행&lt;/li>
 &lt;li>컨테이너와 daprd 관계 이해?&lt;/li>
 &lt;/ul></description></item><item><title>Learned: State C#</title><link>https://hhko.github.io/learned/dapr/helloworld/state-csharp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/state-csharp/</guid><description>
+&lt;ul>
+&lt;li>소스 : &lt;a href="./DaprCounter">링크&lt;/a>&lt;/li>
+&lt;/ul>
 &lt;h2 id="명령어-요약">명령어 요약&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># 콘솔 프로젝트 생성&lt;/span>
 dotnet new console -o DaprCounter
@@ -163,7 +166,6 @@ keys *
 hgetall &lt;span style="color:#e6db74">&amp;#34;DaprCounter||counter&amp;#34;&lt;/span>
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="net-60-콘솔-프로젝트-생성">.NET 6.0 콘솔 프로젝트 생성&lt;/h2>
 &lt;ul>
-&lt;li>소스 : &lt;a href="./DaprCounter">링크&lt;/a>&lt;/li>
 &lt;li>콘솔 프로젝트 생성
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">dotnet new console -o DaprCounter
 cd DaprCounter
@@ -365,4 +367,201 @@ curl http://localhost:3500/v1.0/secrets/my-secret-store/my-secret
 &lt;/code>&lt;/pre>&lt;/div>&lt;ul>
 &lt;li>my-secret-store&lt;/li>
 &lt;li>my-secret : json 파일 데이터 키&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;/ul></description></item><item><title>Learned:</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi-containerized/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi-containerized/</guid><description>
+&lt;p>dotnet new sln -o DaprMultiContainer&lt;/p>
+&lt;p>dotnet new webapp &amp;ndash;no-https -o MyFrontEnd
+dotnet sln add MyFrontEnd/&lt;/p>
+&lt;p>dotnet new webapi &amp;ndash;no-https -o MyBackEnd
+dotnet sln add MyBackEnd/&lt;/p>
+&lt;p>dapr list
+dapr dashboard&lt;/p>
+&lt;p>dapr run &amp;ndash;app-id mybackend &amp;ndash;app-port 5000 &amp;ndash;dapr-http-port 3500 dotnet run
+ℹ️ Starting Dapr with id mybackend. HTTP Port: 3500. gRPC Port: 33797
+&amp;hellip;&lt;/p>
+&lt;p>== APP == Building&amp;hellip;
+ℹ️ Updating metadata for app command: dotnet run
+✅ You&amp;rsquo;re up and running! Both Dapr and your app logs will appear here.&lt;/p>
+&lt;p>== APP == info: Microsoft.Hosting.Lifetime[14]
+== APP == Now listening on: http://localhost:5223
+== APP == info: Microsoft.Hosting.Lifetime[0]
+== APP == Application started. Press Ctrl+C to shut down.
+== APP == info: Microsoft.Hosting.Lifetime[0]
+== APP == Hosting environment: Development
+== APP == info: Microsoft.Hosting.Lifetime[0]
+== APP == Content root path: /github/DaprMultiContainer/MyBackEnd/&lt;/p>
+&lt;p>http://localhost:5223/WeatherForecast
+http://localhost:3500/v1.0/invoke/mybackend/method/WeatherForecast&lt;/p>
+&lt;p>MyBackEnd - Dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80&lt;/p>
+&lt;p>FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY [&amp;ldquo;MyBackEnd/MyBackEnd.csproj&amp;rdquo;, &amp;ldquo;MyBackEnd/&amp;quot;]
+RUN dotnet restore &amp;ldquo;MyBackEnd/MyBackEnd.csproj&amp;rdquo;
+COPY . .
+WORKDIR &amp;ldquo;/src/MyBackEnd&amp;rdquo;
+RUN dotnet build &amp;ldquo;MyBackEnd.csproj&amp;rdquo; -c Release -o /app/build&lt;/p>
+&lt;p>FROM build AS publish
+RUN dotnet publish &amp;ldquo;MyBackEnd.csproj&amp;rdquo; -c Release -o /app/publish&lt;/p>
+&lt;p>FROM base AS final
+WORKDIR /app
+COPY &amp;ndash;from=publish /app/publish .
+ENTRYPOINT [&amp;ldquo;dotnet&amp;rdquo;, &amp;ldquo;MyBackEnd.dll&amp;rdquo;]&lt;/p>
+&lt;p>docker-compose.yml
+version: &amp;lsquo;3.4&amp;rsquo;&lt;/p>
+&lt;p>services:
+mybackend:
+image: mybackend
+build:
+context: .
+dockerfile: MyBackEnd/Dockerfile
+ports:
+- &amp;ldquo;52000:50001&amp;rdquo;&lt;/p>
+&lt;p>mybackend-dapr:
+image: &amp;ldquo;daprio/daprd:latest&amp;rdquo;
+command: [ &amp;ldquo;./daprd&amp;rdquo;, &amp;ldquo;-app-id&amp;rdquo;, &amp;ldquo;MyBackEnd&amp;rdquo;, &amp;ldquo;-app-port&amp;rdquo;, &amp;ldquo;80&amp;rdquo; ]
+depends_on:
+- mybackend
+network_mode: &amp;ldquo;service:mybackend&amp;rdquo;&lt;/p>
+&lt;p>1.5.1
+1.5.1-linux-amd64
+1.5.1-windows-amd64&lt;/p>
+&lt;p>Compose file format : 3.4
+Docker Engine release : 17.09.0+&lt;/p>
+&lt;p>DaprMultiContainer&lt;/p>
+&lt;p>.NET Core Web App
+&amp;ndash;no-https&lt;/p>
+&lt;p>MyFrontEnd&lt;/p>
+&lt;p>Install-Package Dapr.AspNetCore&lt;/p>
+&lt;p>Program.cs
+builder.Services.AddDaprClient();&lt;/p>
+&lt;p>WeatherForecast.cs
+namespace MyFrontEnd;&lt;/p>
+&lt;p>public class WeatherForecast
+{
+public DateTime Date { get; set; }&lt;/p>
+&lt;pre>&lt;code>public int TemperatureC { get; set; }
+public int TemperatureF { get; set; }
+public string Summary { get; set; } = string.Empty;
+&lt;/code>&lt;/pre>
+&lt;p>}&lt;/p>
+&lt;p>index.cshtml
+using Dapr.Client;
+using Microsoft.AspNetCore.Mvc.RazorPages;&lt;/p>
+&lt;p>namespace MyFrontEnd.Pages;&lt;/p>
+&lt;p>public class IndexModel : PageModel
+{
+private readonly DaprClient _daprClient;&lt;/p>
+&lt;pre>&lt;code>public IndexModel(DaprClient daprClient)
+{
+_daprClient = daprClient;
+}
+public async Task OnGet()
+{
+var forecasts = await _daprClient.InvokeMethodAsync&amp;lt;IEnumerable&amp;lt;WeatherForecast&amp;gt;&amp;gt;(
+HttpMethod.Get,
+&amp;quot;MyBackEnd&amp;quot;,
+&amp;quot;weatherforecast&amp;quot;);
+ViewData[&amp;quot;WeatherForecastData&amp;quot;] = forecasts;
+}
+&lt;/code>&lt;/pre>
+&lt;p>}&lt;/p>
+&lt;ul>
+&lt;li>OnGet메서드는 사용자가 홈 페이지를 방문할 때마다 호출 됩니다.&lt;/li>
+&lt;/ul>
+&lt;p>@page
+@model IndexModel
+@{
+ViewData[&amp;ldquo;Title&amp;rdquo;] = &amp;ldquo;Home page&amp;rdquo;;
+}&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>Docker-compose.ci.build.yml
+version: &amp;lsquo;3.4&amp;rsquo;&lt;/p>
+&lt;p>services:
+myfrontend:
+image: ${DOCKER_REGISTRY-}myfrontend
+build:
+context: .
+dockerfile: MyFrontEnd/Dockerfile&lt;/p>
+&lt;p>Dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443&lt;/p>
+&lt;p>FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY [&amp;ldquo;MyFrontEnd/MyFrontEnd.csproj&amp;rdquo;, &amp;ldquo;MyFrontEnd/&amp;quot;]
+RUN dotnet restore &amp;ldquo;MyFrontEnd/MyFrontEnd.csproj&amp;rdquo;
+COPY . .
+WORKDIR &amp;ldquo;/src/MyFrontEnd&amp;rdquo;
+RUN dotnet build &amp;ldquo;MyFrontEnd.csproj&amp;rdquo; -c Release -o /app/build&lt;/p>
+&lt;p>FROM build AS publish
+RUN dotnet publish &amp;ldquo;MyFrontEnd.csproj&amp;rdquo; -c Release -o /app/publish&lt;/p>
+&lt;p>FROM base AS final
+WORKDIR /app
+COPY &amp;ndash;from=publish /app/publish .
+ENTRYPOINT [&amp;ldquo;dotnet&amp;rdquo;, &amp;ldquo;MyFrontEnd.dll&amp;rdquo;]&lt;/p>
+&lt;p>.NET Core Web API
+MyBackEnd&lt;/p>
+&lt;p>Dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80&lt;/p>
+&lt;p>FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY [&amp;ldquo;MyBackEnd/MyBackEnd.csproj&amp;rdquo;, &amp;ldquo;MyBackEnd/&amp;quot;]
+RUN dotnet restore &amp;ldquo;MyBackEnd/MyBackEnd.csproj&amp;rdquo;
+COPY . .
+WORKDIR &amp;ldquo;/src/MyBackEnd&amp;rdquo;
+RUN dotnet build &amp;ldquo;MyBackEnd.csproj&amp;rdquo; -c Release -o /app/build&lt;/p>
+&lt;p>FROM build AS publish
+RUN dotnet publish &amp;ldquo;MyBackEnd.csproj&amp;rdquo; -c Release -o /app/publish&lt;/p>
+&lt;p>FROM base AS final
+WORKDIR /app
+COPY &amp;ndash;from=publish /app/publish .
+ENTRYPOINT [&amp;ldquo;dotnet&amp;rdquo;, &amp;ldquo;MyBackEnd.dll&amp;rdquo;]&lt;/p>
+&lt;p>Docker-compose.ci.build.yml
+version: &amp;lsquo;3.4&amp;rsquo;&lt;/p>
+&lt;p>services:
+myfrontend:
+image: ${DOCKER_REGISTRY-}myfrontend
+build:
+context: .
+dockerfile: MyFrontEnd/Dockerfile&lt;/p>
+&lt;p>mybackend:
+image: ${DOCKER_REGISTRY-}mybackend
+build:
+context: .
+dockerfile: MyBackEnd/Dockerfile&lt;/p>
+&lt;p>Docker-compose.ci.build.yml
+version: &amp;lsquo;3.4&amp;rsquo;&lt;/p>
+&lt;p>services:
+myfrontend:
+image: ${DOCKER_REGISTRY-}myfrontend
+build:
+context: .
+dockerfile: MyFrontEnd/Dockerfile
+ports:
+- &amp;ldquo;51000:50001&amp;rdquo;&lt;/p>
+&lt;p>myfrontend-dapr:
+image: &amp;ldquo;daprio/daprd:latest&amp;rdquo;
+command: [ &amp;ldquo;./daprd&amp;rdquo;, &amp;ldquo;-app-id&amp;rdquo;, &amp;ldquo;MyFrontEnd&amp;rdquo;, &amp;ldquo;-app-port&amp;rdquo;, &amp;ldquo;80&amp;rdquo; ]
+depends_on:
+- myfrontend
+network_mode: &amp;ldquo;service:myfrontend&amp;rdquo;&lt;/p>
+&lt;p>mybackend:
+image: ${DOCKER_REGISTRY-}mybackend
+build:
+context: .
+dockerfile: MyBackEnd/Dockerfile
+ports:
+- &amp;ldquo;52000:50001&amp;rdquo;&lt;/p>
+&lt;p>mybackend-dapr:
+image: &amp;ldquo;daprio/daprd:latest&amp;rdquo;
+command: [ &amp;ldquo;./daprd&amp;rdquo;, &amp;ldquo;-app-id&amp;rdquo;, &amp;ldquo;MyBackEnd&amp;rdquo;, &amp;ldquo;-app-port&amp;rdquo;, &amp;ldquo;80&amp;rdquo; ]
+depends_on:
+- mybackend
+network_mode: &amp;ldquo;service:mybackend&amp;rdquo;&lt;/p>
+&lt;p>daprio/daprd:latest -&amp;gt;
+gRPC 50001?&lt;/p></description></item></channel></rss>
