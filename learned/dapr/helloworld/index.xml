@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>배움은 설렘이다 – Helloworld 예제</title><link>https://hhko.github.io/learned/dapr/helloworld/</link><description>Recent content in Helloworld 예제 on 배움은 설렘이다</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><atom:link href="https://hhko.github.io/learned/dapr/helloworld/index.xml" rel="self" type="application/rss+xml"/><item><title>Learned: State</title><link>https://hhko.github.io/learned/dapr/helloworld/state/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/state/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>배움은 설렘이다 – Helloworld 예제</title><link>https://hhko.github.io/learned/dapr/helloworld/</link><description>Recent content in Helloworld 예제 on 배움은 설렘이다</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><atom:link href="https://hhko.github.io/learned/dapr/helloworld/index.xml" rel="self" type="application/rss+xml"/><item><title>Learned: State API</title><link>https://hhko.github.io/learned/dapr/helloworld/state-api/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/state-api/</guid><description>
 &lt;h2 id="명령어-요약">명령어 요약&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># Dapr Sideccar 실행&lt;/span>
 dapr run --app-id myapp --dapr-http-port &lt;span style="color:#ae81ff">3500&lt;/span>
@@ -146,6 +146,149 @@ root@HHKO-LABTOP:~#
 &lt;ul>
 &lt;li>Background 실행&lt;/li>
 &lt;li>컨테이너와 daprd 관계 이해?&lt;/li>
+&lt;/ul></description></item><item><title>Learned: State C#</title><link>https://hhko.github.io/learned/dapr/helloworld/state-csharp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/state-csharp/</guid><description>
+&lt;h2 id="명령어-요약">명령어 요약&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># 콘솔 프로젝트 생성&lt;/span>
+dotnet new console -o DaprCounter
+cd DaprCounter
+dotnet run
+&lt;span style="color:#75715e"># 패키지 추가&lt;/span>
+dotnet add package Dapr.Client
+&lt;span style="color:#75715e"># State 상태 코드&lt;/span>
+&lt;span style="color:#75715e"># Dapr 실행&lt;/span>
+dapr run --app-id DaprCounter dotnet run
+&lt;span style="color:#75715e"># Reids 값 확인&lt;/span>
+docker container exec -it dapr_redis redis-cli
+keys *
+hgetall &lt;span style="color:#e6db74">&amp;#34;DaprCounter||counter&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="net-60-콘솔-프로젝트-생성">.NET 6.0 콘솔 프로젝트 생성&lt;/h2>
+&lt;ul>
+&lt;li>소스 : &lt;a href="./DaprCounter">링크&lt;/a>&lt;/li>
+&lt;li>콘솔 프로젝트 생성
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">dotnet new console -o DaprCounter
+cd DaprCounter
+dotnet run
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>Dapr 패키지 추가
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">dotnet add package Dapr.Client
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>State 상태 코드 구현
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-cs" data-lang="cs">&lt;span style="color:#66d9ef">using&lt;/span> Dapr.Client;
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> storeName = &lt;span style="color:#e6db74">&amp;#34;statestore&amp;#34;&lt;/span>;
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span> key = &lt;span style="color:#e6db74">&amp;#34;counter&amp;#34;&lt;/span>;
+&lt;span style="color:#66d9ef">var&lt;/span> daprClient = &lt;span style="color:#66d9ef">new&lt;/span> DaprClientBuilder().Build();
+&lt;span style="color:#66d9ef">var&lt;/span> counter = &lt;span style="color:#66d9ef">await&lt;/span> daprClient.GetStateAsync&amp;lt;&lt;span style="color:#66d9ef">int&lt;/span>&amp;gt;(storeName, key);
+&lt;span style="color:#66d9ef">while&lt;/span> (&lt;span style="color:#66d9ef">true&lt;/span>)
+{
+Console.WriteLine(&lt;span style="color:#e6db74">$&amp;#34;Counter = {counter++}&amp;#34;&lt;/span>);
+&lt;span style="color:#66d9ef">await&lt;/span> daprClient.SaveStateAsync(storeName, key, counter);
+&lt;span style="color:#66d9ef">await&lt;/span> Task.Delay(&lt;span style="color:#ae81ff">1000&lt;/span>);
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>statestore&lt;/code> : &lt;code>$HOME/.dapr/components/statestore.yaml&lt;/code>에 정의된 상태 이름&lt;/li>
+&lt;li>&lt;code>counter&lt;/code> : Redis에서 사용될 키 이름&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="net-60-콘솔-프로젝트-실행">.NET 6.0 콘솔 프로젝트 실행&lt;/h2>
+&lt;ul>
+&lt;li>Dapr 실행
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">dapr run --app-id DaprCounter dotnet run
+ℹ️ Starting Dapr with id DaprCounter. HTTP Port: 45877. gRPC Port: &lt;span style="color:#ae81ff">34973&lt;/span>
+ℹ️ Checking &lt;span style="color:#66d9ef">if&lt;/span> Dapr sidecar is listening on HTTP port &lt;span style="color:#ae81ff">45877&lt;/span>
+...
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Counter &lt;span style="color:#f92672">=&lt;/span> 0
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Counter &lt;span style="color:#f92672">=&lt;/span> 1
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Counter &lt;span style="color:#f92672">=&lt;/span> 2
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Counter &lt;span style="color:#f92672">=&lt;/span> 3
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Counter &lt;span style="color:#f92672">=&lt;/span> 4
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Counter &lt;span style="color:#f92672">=&lt;/span> 5
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Counter &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">6&lt;/span>
+terminated signal received: shutting down
+✅ Exited Dapr successfully
+✅ Exited App successfully
+&lt;span style="color:#75715e"># 재실행 : 이전 값 이후로 시작된다&lt;/span>
+dapr run --app-id DaprCounter dotnet run
+ℹ️ Starting Dapr with id DaprCounter. HTTP Port: 45877. gRPC Port: &lt;span style="color:#ae81ff">34973&lt;/span>
+ℹ️ Checking &lt;span style="color:#66d9ef">if&lt;/span> Dapr sidecar is listening on HTTP port &lt;span style="color:#ae81ff">45877&lt;/span>
+...
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Counter &lt;span style="color:#f92672">=&lt;/span> 7
+&lt;span style="color:#f92672">==&lt;/span> APP &lt;span style="color:#f92672">==&lt;/span> Counter &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">8&lt;/span>
+...
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="redis-키값-확인">Redis 키/값 확인&lt;/h2>
+&lt;ul>
+&lt;li>Redis 접속
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">docker container exec -it dapr_redis redis-cli
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>키 확인
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">127.0.0.1:6379&amp;gt; keys *
+1&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#e6db74">&amp;#34;DaprCounter||counter&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>DaprCounter&lt;/code> : &amp;ndash;app-id 식별 값&lt;/li>
+&lt;li>&lt;code>counter&lt;/code> : &lt;code>daprClient.GetStateAsync&amp;lt;int&amp;gt;&lt;/code>와 &lt;code>daprClient.SaveStateAsync&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>값 확인
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">127.0.0.1:6379&amp;gt; hgetall &lt;span style="color:#e6db74">&amp;#34;DaprCounter||counter&amp;#34;&lt;/span>
+1&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#e6db74">&amp;#34;data&amp;#34;&lt;/span>
+2&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#e6db74">&amp;#34;92&amp;#34;&lt;/span>
+3&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#e6db74">&amp;#34;version&amp;#34;&lt;/span>
+4&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#e6db74">&amp;#34;92&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="redis-설정">Redis 설정&lt;/h2>
+&lt;ul>
+&lt;li>기본 설정 파일 : &lt;code>$HOME/.dapr/components/statestore.yaml&lt;/code>&lt;/li>
+&lt;li>기본 설정
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">dapr.io/v1alpha1&lt;/span>
+&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
+&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">statestore&lt;/span>
+&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;span style="color:#f92672">type&lt;/span>: &lt;span style="color:#ae81ff">state.redis&lt;/span>
+&lt;span style="color:#f92672">version&lt;/span>: &lt;span style="color:#ae81ff">v1&lt;/span>
+&lt;span style="color:#f92672">metadata&lt;/span>:
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">redisHost&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">localhost:6379&lt;/span>
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">redisPassword&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">actorStateStore&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;true&amp;#34;&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>추가 설정
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="color:#f92672">apiVersion&lt;/span>: &lt;span style="color:#ae81ff">dapr.io/v1alpha1&lt;/span>
+&lt;span style="color:#f92672">kind&lt;/span>: &lt;span style="color:#ae81ff">Component&lt;/span>
+&lt;span style="color:#f92672">metadata&lt;/span>:
+&lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">statestore&lt;/span>
+&lt;span style="color:#f92672">namespace&lt;/span>: &lt;span style="color:#ae81ff">production&lt;/span>
+&lt;span style="color:#f92672">spec&lt;/span>:
+&lt;span style="color:#f92672">type&lt;/span>: &lt;span style="color:#ae81ff">state.redis&lt;/span>
+&lt;span style="color:#f92672">version&lt;/span>: &lt;span style="color:#ae81ff">v1&lt;/span>
+&lt;span style="color:#f92672">metadata&lt;/span>:
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">redisHost&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#ae81ff">localhost:6379&lt;/span>
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">redisPassword&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>
+- &lt;span style="color:#f92672">name&lt;/span>: &lt;span style="color:#ae81ff">actorStateStore&lt;/span>
+&lt;span style="color:#f92672">value&lt;/span>: &lt;span style="color:#e6db74">&amp;#34;true&amp;#34;&lt;/span>
+&lt;span style="color:#f92672">scopes&lt;/span>:
+- &lt;span style="color:#ae81ff">DaprCounter&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>namespace: production&lt;/code>&lt;/li>
+&lt;li>&lt;code>scopes: DaprCounter&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="todo">TODO&lt;/h2>
+&lt;ul>
+&lt;li>&lt;input disabled="" type="checkbox"> &lt;code>namespace: production&lt;/code> 의미는?&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> &lt;code>scopes: DaprCounter&lt;/code> 의미는?&lt;/li>
+&lt;/ul>
+&lt;h2 id="참고-사이트">참고 사이트&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.microsoft.com/en-us/dotnet/architecture/dapr-for-net-developers/getting-started">Get started with Dapr&lt;/a>&lt;/li>
 &lt;/ul></description></item><item><title>Learned: Secrets Component</title><link>https://hhko.github.io/learned/dapr/helloworld/component/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/component/</guid><description>
 &lt;h2 id="명령어-요약">명령어 요약&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># Secrets 파일 생성 : mysecrets.json&lt;/span>

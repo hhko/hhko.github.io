@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>배움은 설렘이다 – 설치</title><link>https://hhko.github.io/learned/dapr/install/</link><description>Recent content in 설치 on 배움은 설렘이다</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><atom:link href="https://hhko.github.io/learned/dapr/install/index.xml" rel="self" type="application/rss+xml"/><item><title>Learned: Dapr 설치</title><link>https://hhko.github.io/learned/dapr/install/dapr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/install/dapr/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>배움은 설렘이다 – 설치</title><link>https://hhko.github.io/learned/dapr/install/</link><description>Recent content in 설치 on 배움은 설렘이다</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><atom:link href="https://hhko.github.io/learned/dapr/install/index.xml" rel="self" type="application/rss+xml"/><item><title>Learned: Dapr</title><link>https://hhko.github.io/learned/dapr/install/dapr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/install/dapr/</guid><description>
 &lt;h2 id="명령어-요약">명령어 요약&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># Dapr CLI 설치(Root 권한일 때)&lt;/span>
 wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
@@ -119,7 +119,7 @@ drwxrwxrwx &lt;span style="color:#ae81ff">2&lt;/span> root root &lt;span style="
 &lt;ul>
 &lt;li>특정 버전 설치&lt;/li>
 &lt;li>업그레이드&lt;/li>
-&lt;/ul></description></item><item><title>Learned: .NET 6.0 설치</title><link>https://hhko.github.io/learned/dapr/install/dotnet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/install/dotnet/</guid><description>
+&lt;/ul></description></item><item><title>Learned: .NET 6.0</title><link>https://hhko.github.io/learned/dapr/install/dotnet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/install/dotnet/</guid><description>
 &lt;h2 id="net-60-패키지-수동-설치">.NET 6.0 패키지 수동 설치&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># GPG 패키지 설치&lt;/span>
 sudo apt install -y gpg
@@ -225,7 +225,7 @@ sudo apt upgrade
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="참고-사이트">참고 사이트&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://docs.microsoft.com/ko-kr/dotnet/core/install/linux-debian#unable-to-locate--some-packages-could-not-be-installed">Debian에 .NET SDK 또는 .NET 런타임 설치&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>Learned: Ubuntu 20.04 LTS 설치</title><link>https://hhko.github.io/learned/dapr/install/wsl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/install/wsl/</guid><description>
+&lt;/ul></description></item><item><title>Learned: Ubuntu 20.04 LTS</title><link>https://hhko.github.io/learned/dapr/install/wsl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/install/wsl/</guid><description>
 &lt;h2 id="명령어-요약">명령어 요약&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># 목록&lt;/span>
 wsl -l -v

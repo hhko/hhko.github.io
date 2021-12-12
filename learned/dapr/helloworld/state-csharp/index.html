@@ -1,0 +1,324 @@
+<!doctype html><html lang=ko class=no-js>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=generator content="Hugo 0.89.4">
+<link rel=alternate type=application/rss+xml href=https://hhko.github.io/learned/dapr/helloworld/state-csharp/index.xml>
+<meta name=robots content="index, follow">
+<link rel="shortcut icon" href=/favicons/favicon.ico>
+<link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180>
+<link rel=icon type=image/png href=/favicons/favicon-16x16.png sizes=16x16>
+<link rel=icon type=image/png href=/favicons/favicon-32x32.png sizes=32x32>
+<link rel=icon type=image/png href=/favicons/android-36x36.png sizes=36x36>
+<link rel=icon type=image/png href=/favicons/android-48x48.png sizes=48x48>
+<link rel=icon type=image/png href=/favicons/android-72x72.png sizes=72x72>
+<link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96>
+<link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144>
+<link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192>
+<title>State C# | 배움은 설렘이다</title>
+<meta name=description content="Redis 상태 읽기 및 쓰기 예제">
+<meta property="og:title" content="State C#">
+<meta property="og:description" content="Redis 상태 읽기 및 쓰기 예제">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hhko.github.io/learned/dapr/helloworld/state-csharp/"><meta property="og:site_name" content="배움은 설렘이다">
+<meta itemprop=name content="State C#">
+<meta itemprop=description content="Redis 상태 읽기 및 쓰기 예제"><meta name=twitter:card content="summary">
+<meta name=twitter:title content="State C#">
+<meta name=twitter:description content="Redis 상태 읽기 및 쓰기 예제">
+<link rel=preload href=/scss/main.min.90983698afafd407e6b72e83a2b749ff1726e8502277108f05bd66510938dec2.css as=style>
+<link href=/scss/main.min.90983698afafd407e6b72e83a2b749ff1726e8502277108f05bd66510938dec2.css rel=stylesheet integrity>
+<script src=https://code.jquery.com/jquery-3.5.1.min.js integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin=anonymous></script>
+</head>
+<body class=td-section>
+<header>
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+<a class=navbar-brand href=/>
+<span class=navbar-logo></span><span class="text-uppercase font-weight-bold">배움은 설렘이다</span>
+</a>
+<div class="td-navbar-nav-scroll ml-md-auto" id=main_navbar>
+<ul class="navbar-nav mt-2 mt-lg-0">
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class="nav-link active" href=/learned/><span class=active>배움</span></a>
+</li>
+<li class="nav-item mr-4 mb-2 mb-lg-0">
+<a class=nav-link href=https://github.com/hhko/hhko.github.io target=_blank><span>GitHub</span></a>
+</li>
+</ul>
+</div>
+<div class="navbar-nav d-none d-lg-block"></div>
+</nav>
+</header>
+<div class="container-fluid td-outer">
+<div class=td-main>
+<div class="row flex-xl-nowrap">
+<aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+<div id=td-sidebar-menu class=td-sidebar__inner>
+<form class="td-sidebar__search d-flex align-items-center">
+<button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type=button data-toggle=collapse data-target=#td-section-nav aria-controls=td-docs-nav aria-expanded=false aria-label="Toggle section navigation">
+</button>
+</form>
+<nav class="collapse td-sidebar-nav" id=td-section-nav>
+<ul class="td-sidebar-nav__section pr-md-3 ul-0">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learned-li>
+<a href=/learned/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id=m-learned><span>배움</span></a>
+<ul class=ul-1>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learneddapr-li>
+<a href=/learned/dapr/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddapr><span>Dapr</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-learneddaprinstall-li>
+<a href=/learned/dapr/install/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstall><span>설치</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstalldapr-li>
+<a href=/learned/dapr/install/dapr/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldapr><span>Dapr</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstalldotnet-li>
+<a href=/learned/dapr/install/dotnet/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldotnet><span>.NET 6.0</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstallwsl-li>
+<a href=/learned/dapr/install/wsl/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstallwsl><span>Ubuntu 20.04 LTS</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learneddaprhelloworld-li>
+<a href=/learned/dapr/helloworld/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworld><span>Helloworld 예제</span></a>
+<ul class="ul-3 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldstate-api-li>
+<a href=/learned/dapr/helloworld/state-api/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate-api><span>State API</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-learneddaprhelloworldstate-csharp-li>
+<a href=/learned/dapr/helloworld/state-csharp/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate-csharp><span class=td-sidebar-nav-active-item>State C#</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldcomponent-li>
+<a href=/learned/dapr/helloworld/component/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldcomponent><span>Secrets Component</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-learnedopensearch-li>
+<a href=/learned/opensearch/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learnedopensearch><span>OpenSearch</span></a>
+<ul class="ul-2 foldable">
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learnedopensearchinstall-li>
+<a href=/learned/opensearch/install/ class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id=m-learnedopensearchinstall><span>설치</span></a>
+</li>
+</ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learnedlink-li>
+<a href=/learned/link/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learnedlink><span>참고 자료</span></a>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+<aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+</div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#명령어-요약>명령어 요약</a></li>
+<li><a href=#net-60-콘솔-프로젝트-생성>.NET 6.0 콘솔 프로젝트 생성</a></li>
+<li><a href=#net-60-콘솔-프로젝트-실행>.NET 6.0 콘솔 프로젝트 실행</a></li>
+<li><a href=#redis-키값-확인>Redis 키/값 확인</a></li>
+<li><a href=#redis-설정>Redis 설정</a></li>
+<li><a href=#todo>TODO</a></li>
+<li><a href=#참고-사이트>참고 사이트</a></li>
+</ul>
+</nav></div>
+</aside>
+<main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
+<nav aria-label=breadcrumb class=td-breadcrumbs>
+<ol class=breadcrumb>
+<li class=breadcrumb-item>
+<a href=https://hhko.github.io/learned/>배움</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://hhko.github.io/learned/dapr/>Dapr</a>
+</li>
+<li class=breadcrumb-item>
+<a href=https://hhko.github.io/learned/dapr/helloworld/>Helloworld 예제</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://hhko.github.io/learned/dapr/helloworld/state-csharp/>State C#</a>
+</li>
+</ol>
+</nav>
+<div class=td-content>
+<h1>State C#</h1>
+<div class=lead>Redis 상태 읽기 및 쓰기 예제</div>
+<header class=article-meta>
+</header>
+<h2 id=명령어-요약>명령어 요약</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># 콘솔 프로젝트 생성</span>
+dotnet new console -o DaprCounter
+cd DaprCounter
+dotnet run
+
+<span style=color:#75715e># 패키지 추가</span>
+dotnet add package Dapr.Client
+
+<span style=color:#75715e># State 상태 코드</span>
+
+<span style=color:#75715e># Dapr 실행</span>
+dapr run --app-id DaprCounter dotnet run
+
+<span style=color:#75715e># Reids 값 확인</span>
+docker container exec -it dapr_redis redis-cli
+keys *
+hgetall <span style=color:#e6db74>&#34;DaprCounter||counter&#34;</span>
+</code></pre></div><h2 id=net-60-콘솔-프로젝트-생성>.NET 6.0 콘솔 프로젝트 생성</h2>
+<ul>
+<li>소스 : <a href=./DaprCounter>링크</a></li>
+<li>콘솔 프로젝트 생성
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>dotnet new console -o DaprCounter
+cd DaprCounter
+dotnet run
+</code></pre></div></li>
+<li>Dapr 패키지 추가
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>dotnet add package Dapr.Client
+</code></pre></div></li>
+<li>State 상태 코드 구현
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cs data-lang=cs><span style=color:#66d9ef>using</span> Dapr.Client;
+
+<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>string</span> storeName = <span style=color:#e6db74>&#34;statestore&#34;</span>;
+<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>string</span> key = <span style=color:#e6db74>&#34;counter&#34;</span>;
+
+<span style=color:#66d9ef>var</span> daprClient = <span style=color:#66d9ef>new</span> DaprClientBuilder().Build();
+<span style=color:#66d9ef>var</span> counter = <span style=color:#66d9ef>await</span> daprClient.GetStateAsync&lt;<span style=color:#66d9ef>int</span>&gt;(storeName, key);
+
+<span style=color:#66d9ef>while</span> (<span style=color:#66d9ef>true</span>)
+{
+    Console.WriteLine(<span style=color:#e6db74>$&#34;Counter = {counter++}&#34;</span>);
+
+    <span style=color:#66d9ef>await</span> daprClient.SaveStateAsync(storeName, key, counter);
+    <span style=color:#66d9ef>await</span> Task.Delay(<span style=color:#ae81ff>1000</span>);
+}
+</code></pre></div><ul>
+<li><code>statestore</code> : <code>$HOME/.dapr/components/statestore.yaml</code>에 정의된 상태 이름</li>
+<li><code>counter</code> : Redis에서 사용될 키 이름</li>
+</ul>
+</li>
+</ul>
+<h2 id=net-60-콘솔-프로젝트-실행>.NET 6.0 콘솔 프로젝트 실행</h2>
+<ul>
+<li>Dapr 실행
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>dapr run --app-id DaprCounter dotnet run
+ℹ️  Starting Dapr with id DaprCounter. HTTP Port: 45877. gRPC Port: <span style=color:#ae81ff>34973</span>
+ℹ️  Checking <span style=color:#66d9ef>if</span> Dapr sidecar is listening on HTTP port <span style=color:#ae81ff>45877</span>
+...
+
+<span style=color:#f92672>==</span> APP <span style=color:#f92672>==</span> Counter <span style=color:#f92672>=</span> 0
+<span style=color:#f92672>==</span> APP <span style=color:#f92672>==</span> Counter <span style=color:#f92672>=</span> 1
+<span style=color:#f92672>==</span> APP <span style=color:#f92672>==</span> Counter <span style=color:#f92672>=</span> 2
+<span style=color:#f92672>==</span> APP <span style=color:#f92672>==</span> Counter <span style=color:#f92672>=</span> 3
+<span style=color:#f92672>==</span> APP <span style=color:#f92672>==</span> Counter <span style=color:#f92672>=</span> 4
+<span style=color:#f92672>==</span> APP <span style=color:#f92672>==</span> Counter <span style=color:#f92672>=</span> 5
+<span style=color:#f92672>==</span> APP <span style=color:#f92672>==</span> Counter <span style=color:#f92672>=</span> <span style=color:#ae81ff>6</span>
+
+terminated signal received: shutting down
+✅  Exited Dapr successfully
+✅  Exited App successfully
+
+<span style=color:#75715e># 재실행 : 이전 값 이후로 시작된다</span>
+dapr run --app-id DaprCounter dotnet run
+ℹ️  Starting Dapr with id DaprCounter. HTTP Port: 45877. gRPC Port: <span style=color:#ae81ff>34973</span>
+ℹ️  Checking <span style=color:#66d9ef>if</span> Dapr sidecar is listening on HTTP port <span style=color:#ae81ff>45877</span>
+...
+
+<span style=color:#f92672>==</span> APP <span style=color:#f92672>==</span> Counter <span style=color:#f92672>=</span> 7
+<span style=color:#f92672>==</span> APP <span style=color:#f92672>==</span> Counter <span style=color:#f92672>=</span> <span style=color:#ae81ff>8</span>
+...
+</code></pre></div></li>
+</ul>
+<h2 id=redis-키값-확인>Redis 키/값 확인</h2>
+<ul>
+<li>Redis 접속
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>docker container exec -it dapr_redis redis-cli
+</code></pre></div></li>
+<li>키 확인
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; keys *
+1<span style=color:#f92672>)</span> <span style=color:#e6db74>&#34;DaprCounter||counter&#34;</span>
+</code></pre></div><ul>
+<li><code>DaprCounter</code> : &ndash;app-id 식별 값</li>
+<li><code>counter</code> : <code>daprClient.GetStateAsync&lt;int></code>와 <code>daprClient.SaveStateAsync</code></li>
+</ul>
+</li>
+<li>값 확인
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>127.0.0.1:6379&gt; hgetall <span style=color:#e6db74>&#34;DaprCounter||counter&#34;</span>
+1<span style=color:#f92672>)</span> <span style=color:#e6db74>&#34;data&#34;</span>
+2<span style=color:#f92672>)</span> <span style=color:#e6db74>&#34;92&#34;</span>
+3<span style=color:#f92672>)</span> <span style=color:#e6db74>&#34;version&#34;</span>
+4<span style=color:#f92672>)</span> <span style=color:#e6db74>&#34;92&#34;</span>
+</code></pre></div></li>
+</ul>
+<h2 id=redis-설정>Redis 설정</h2>
+<ul>
+<li>기본 설정 파일 : <code>$HOME/.dapr/components/statestore.yaml</code></li>
+<li>기본 설정
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>dapr.io/v1alpha1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Component</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>statestore</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>type</span>: <span style=color:#ae81ff>state.redis</span>
+  <span style=color:#f92672>version</span>: <span style=color:#ae81ff>v1</span>
+  <span style=color:#f92672>metadata</span>:
+  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>redisHost</span>
+    <span style=color:#f92672>value</span>: <span style=color:#ae81ff>localhost:6379</span>
+  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>redisPassword</span>
+    <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>actorStateStore</span>
+    <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;true&#34;</span>
+</code></pre></div></li>
+<li>추가 설정
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>dapr.io/v1alpha1</span>
+<span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Component</span>
+<span style=color:#f92672>metadata</span>:
+  <span style=color:#f92672>name</span>: <span style=color:#ae81ff>statestore</span>
+  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>production</span>
+<span style=color:#f92672>spec</span>:
+  <span style=color:#f92672>type</span>: <span style=color:#ae81ff>state.redis</span>
+  <span style=color:#f92672>version</span>: <span style=color:#ae81ff>v1</span>
+  <span style=color:#f92672>metadata</span>:
+  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>redisHost</span>
+    <span style=color:#f92672>value</span>: <span style=color:#ae81ff>localhost:6379</span>
+  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>redisPassword</span>
+    <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;&#34;</span>
+  - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>actorStateStore</span>
+    <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;true&#34;</span>
+  <span style=color:#f92672>scopes</span>:
+  - <span style=color:#ae81ff>DaprCounter</span>
+</code></pre></div><ul>
+<li><code>namespace: production</code></li>
+<li><code>scopes: DaprCounter</code></li>
+</ul>
+</li>
+</ul>
+<h2 id=todo>TODO</h2>
+<ul>
+<li><input disabled type=checkbox> <code>namespace: production</code> 의미는?</li>
+<li><input disabled type=checkbox> <code>scopes: DaprCounter</code> 의미는?</li>
+</ul>
+<h2 id=참고-사이트>참고 사이트</h2>
+<ul>
+<li><a href=https://docs.microsoft.com/en-us/dotnet/architecture/dapr-for-net-developers/getting-started>Get started with Dapr</a></li>
+</ul>
+<div class=section-index>
+</div>
+</div>
+</main>
+</div>
+</div>
+<footer class="bg-dark py-5 row d-print-none">
+<div class="container-fluid mx-sm-5">
+<div class=row>
+<div class="col-6 col-sm-4 text-xs-center order-sm-2">
+</div>
+<div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+</div>
+<div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src=https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js integrity=sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin=anonymous></script>
+<script src=/js/tabpane-persist.js></script>
+<script src=/js/main.min.391da3eb18949eadd765f25289a14a0b83052a94db796648e9785f4b2a98f3a9.js integrity="sha256-OR2j6xiUnq3XZfJSiaFKC4MFKpTbeWZI6XhfSyqY86k=" crossorigin=anonymous></script>
+</body>
+</html>

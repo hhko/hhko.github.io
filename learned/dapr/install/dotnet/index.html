@@ -15,15 +15,15 @@
 <link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96>
 <link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144>
 <link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192>
-<title>.NET 6.0 설치 | 배움은 설렘이다</title>
+<title>.NET 6.0 | 배움은 설렘이다</title>
 <meta name=description content="Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치">
-<meta property="og:title" content=".NET 6.0 설치">
+<meta property="og:title" content=".NET 6.0">
 <meta property="og:description" content="Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hhko.github.io/learned/dapr/install/dotnet/"><meta property="og:site_name" content="배움은 설렘이다">
-<meta itemprop=name content=".NET 6.0 설치">
+<meta itemprop=name content=".NET 6.0">
 <meta itemprop=description content="Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치"><meta name=twitter:card content="summary">
-<meta name=twitter:title content=".NET 6.0 설치">
+<meta name=twitter:title content=".NET 6.0">
 <meta name=twitter:description content="Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치">
 <link rel=preload href=/scss/main.min.90983698afafd407e6b72e83a2b749ff1726e8502277108f05bd66510938dec2.css as=style>
 <link href=/scss/main.min.90983698afafd407e6b72e83a2b749ff1726e8502277108f05bd66510938dec2.css rel=stylesheet integrity>
@@ -69,18 +69,20 @@
 <a href=/learned/dapr/install/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstall><span>설치</span></a>
 <ul class="ul-3 foldable">
 <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstalldapr-li>
-<a href=/learned/dapr/install/dapr/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldapr><span>Dapr 설치</span></a>
+<a href=/learned/dapr/install/dapr/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldapr><span>Dapr</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-learneddaprinstalldotnet-li>
-<a href=/learned/dapr/install/dotnet/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldotnet><span class=td-sidebar-nav-active-item>.NET 6.0 설치</span></a>
+<a href=/learned/dapr/install/dotnet/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldotnet><span class=td-sidebar-nav-active-item>.NET 6.0</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstallwsl-li>
-<a href=/learned/dapr/install/wsl/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstallwsl><span>Ubuntu 20.04 LTS 설치</span></a>
+<a href=/learned/dapr/install/wsl/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstallwsl><span>Ubuntu 20.04 LTS</span></a>
 </li>
 </ul>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id=m-learneddaprhelloworld-li>
 <a href=/learned/dapr/helloworld/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworld><span>Helloworld 예제</span></a>
 <ul class="ul-3 foldable">
-<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldstate-li>
-<a href=/learned/dapr/helloworld/state/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate><span>State</span></a>
+<li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldstate-api-li>
+<a href=/learned/dapr/helloworld/state-api/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate-api><span>State API</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldstate-csharp-li>
+<a href=/learned/dapr/helloworld/state-csharp/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldstate-csharp><span>State C#</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprhelloworldcomponent-li>
 <a href=/learned/dapr/helloworld/component/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprhelloworldcomponent><span>Secrets Component</span></a>
 </li>
@@ -129,12 +131,12 @@
 <a href=https://hhko.github.io/learned/dapr/install/>설치</a>
 </li>
 <li class="breadcrumb-item active" aria-current=page>
-<a href=https://hhko.github.io/learned/dapr/install/dotnet/>.NET 6.0 설치</a>
+<a href=https://hhko.github.io/learned/dapr/install/dotnet/>.NET 6.0</a>
 </li>
 </ol>
 </nav>
 <div class=td-content>
-<h1>.NET 6.0 설치</h1>
+<h1>.NET 6.0</h1>
 <div class=lead>Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치</div>
 <header class=article-meta>
 </header>
