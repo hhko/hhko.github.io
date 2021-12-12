@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=generator content="Hugo 0.89.4">
-<link rel=alternate type=application/rss+xml href=https://hhko.github.io/learned/dapr/install/index.xml>
+<link rel=alternate type=application/rss+xml href=https://hhko.github.io/learned/dapr/install/dotnet/index.xml>
 <meta name=robots content="index, follow">
 <link rel="shortcut icon" href=/favicons/favicon.ico>
 <link rel=apple-touch-icon href=/favicons/apple-touch-icon-180x180.png sizes=180x180>
@@ -15,16 +15,16 @@
 <link rel=icon type=image/png href=/favicons/android-96x96.png sizes=96x96>
 <link rel=icon type=image/png href=/favicons/android-144x144.png sizes=144x144>
 <link rel=icon type=image/png href=/favicons/android-192x192.png sizes=192x192>
-<title>설치 | 배움은 설렘이다</title>
-<meta name=description content="개발 환경 설치">
-<meta property="og:title" content="설치">
-<meta property="og:description" content="개발 환경 설치">
+<title>.NET 6.0 설치 | 배움은 설렘이다</title>
+<meta name=description content="Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치">
+<meta property="og:title" content=".NET 6.0 설치">
+<meta property="og:description" content="Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://hhko.github.io/learned/dapr/install/"><meta property="og:site_name" content="배움은 설렘이다">
-<meta itemprop=name content="설치">
-<meta itemprop=description content="개발 환경 설치"><meta name=twitter:card content="summary">
-<meta name=twitter:title content="설치">
-<meta name=twitter:description content="개발 환경 설치">
+<meta property="og:url" content="https://hhko.github.io/learned/dapr/install/dotnet/"><meta property="og:site_name" content="배움은 설렘이다">
+<meta itemprop=name content=".NET 6.0 설치">
+<meta itemprop=description content="Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치"><meta name=twitter:card content="summary">
+<meta name=twitter:title content=".NET 6.0 설치">
+<meta name=twitter:description content="Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치">
 <link rel=preload href=/scss/main.min.90983698afafd407e6b72e83a2b749ff1726e8502277108f05bd66510938dec2.css as=style>
 <link href=/scss/main.min.90983698afafd407e6b72e83a2b749ff1726e8502277108f05bd66510938dec2.css rel=stylesheet integrity>
 <script src=https://code.jquery.com/jquery-3.5.1.min.js integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin=anonymous></script>
@@ -66,12 +66,12 @@
 <a href=/learned/dapr/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddapr><span>Dapr</span></a>
 <ul class="ul-2 foldable">
 <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id=m-learneddaprinstall-li>
-<a href=/learned/dapr/install/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstall><span class=td-sidebar-nav-active-item>설치</span></a>
+<a href=/learned/dapr/install/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstall><span>설치</span></a>
 <ul class="ul-3 foldable">
 <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstalldapr-li>
 <a href=/learned/dapr/install/dapr/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldapr><span>Dapr 설치</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstalldotnet-li>
-<a href=/learned/dapr/install/dotnet/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldotnet><span>.NET 6.0 설치</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id=m-learneddaprinstalldotnet-li>
+<a href=/learned/dapr/install/dotnet/ class="align-left pl-0 active td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstalldotnet><span class=td-sidebar-nav-active-item>.NET 6.0 설치</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id=m-learneddaprinstallwsl-li>
 <a href=/learned/dapr/install/wsl/ class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id=m-learneddaprinstallwsl><span>Ubuntu 20.04 LTS 설치</span></a>
 </li>
@@ -106,6 +106,15 @@
 <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
 <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
 </div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li><a href=#net-60-패키지-수동-설치>.NET 6.0 패키지 수동 설치</a></li>
+<li><a href=#net-60-패키지-설치-확인>.NET 6.0 패키지 설치 확인</a></li>
+<li><a href=#net-60-패키지-제거>.NET 6.0 패키지 제거</a></li>
+<li><a href=#net-패키지-업그레이드>.NET 패키지 업그레이드</a></li>
+<li><a href=#참고-사이트>참고 사이트</a></li>
+</ul>
+</nav></div>
 </aside>
 <main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
 <nav aria-label=breadcrumb class=td-breadcrumbs>
@@ -116,36 +125,131 @@
 <li class=breadcrumb-item>
 <a href=https://hhko.github.io/learned/dapr/>Dapr</a>
 </li>
-<li class="breadcrumb-item active" aria-current=page>
+<li class=breadcrumb-item>
 <a href=https://hhko.github.io/learned/dapr/install/>설치</a>
+</li>
+<li class="breadcrumb-item active" aria-current=page>
+<a href=https://hhko.github.io/learned/dapr/install/dotnet/>.NET 6.0 설치</a>
 </li>
 </ol>
 </nav>
 <div class=td-content>
-<h1>설치</h1>
-<div class=lead>개발 환경 설치</div>
+<h1>.NET 6.0 설치</h1>
+<div class=lead>Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치</div>
 <header class=article-meta>
 </header>
+<h2 id=net-60-패키지-수동-설치>.NET 6.0 패키지 수동 설치</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># GPG 패키지 설치</span>
+sudo apt install -y gpg
+
+<span style=color:#75715e># Microsoft 패키지 GPG 서명키 추가</span>
+wget -O - https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o microsoft.asc.gpg
+sudo mv microsoft.asc.gpg /etc/apt/trusted.gpg.d/
+sudo chown root:root /etc/apt/trusted.gpg.d/microsoft.asc.gpg
+
+<span style=color:#75715e># Microsoft 패키지 저장소 목록 추가</span>
+<span style=color:#75715e># deb [arch=amd64,armhf,arm64] https://packages.microsoft.com/ubuntu/20.04/prod focal main</span>
+wget https://packages.microsoft.com/config/ubuntu/20.04/prod.list
+sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
+sudo chown root:root /etc/apt/sources.list.d/microsoft-prod.list
+
+<span style=color:#75715e># .NET 6.0 패키지 설치</span>
+sudo apt update; <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  sudo apt install -y apt-transport-https <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  sudo apt update <span style=color:#f92672>&amp;&amp;</span> <span style=color:#ae81ff>\
+</span><span style=color:#ae81ff></span>  sudo apt install -y dotnet-sdk-6.0
+</code></pre></div><ul>
+<li><code>dotnet-sdk-6.0</code> : <code>aspnetcore-runtime-6.0</code>와 <code>dotnet-runtime-6.0</code>을 포함한다.</li>
+<li><code>aspnetcore-runtime-6.0</code></li>
+<li><code>dotnet-runtime-6.0</code></li>
+<li>{product}-{type}-{version}
+<ul>
+<li>{product}
+<ul>
+<li>dotnet</li>
+<li>aspnetcore</li>
+</ul>
+</li>
+<li>{type}
+<ul>
+<li>sdk</li>
+<li>runtime</li>
+</ul>
+</li>
+<li>{version}
+<ul>
+<li>6.0</li>
+<li>5.0</li>
+<li>3.1</li>
+<li>3.0</li>
+<li>2.1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id=net-60-패키지-설치-확인>.NET 6.0 패키지 설치 확인</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e># .NET 6.0 패키지 설치 확인</span>
+root@HHKO-LABTOP:~# apt list --installed | grep dotnet
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+dotnet-apphost-pack-6.0/focal,now 6.0.0-1 amd64 <span style=color:#f92672>[</span>installed,automatic<span style=color:#f92672>]</span>
+dotnet-host/focal,now 6.0.0-1 amd64 <span style=color:#f92672>[</span>installed,automatic<span style=color:#f92672>]</span>
+dotnet-hostfxr-6.0/focal,now 6.0.0-1 amd64 <span style=color:#f92672>[</span>installed,automatic<span style=color:#f92672>]</span>
+dotnet-runtime-6.0/focal,now 6.0.0-1 amd64 <span style=color:#f92672>[</span>installed,automatic<span style=color:#f92672>]</span>
+dotnet-runtime-deps-6.0/focal,now 6.0.0-1 amd64 <span style=color:#f92672>[</span>installed,automatic<span style=color:#f92672>]</span>
+dotnet-sdk-6.0/focal,now 6.0.100-1 amd64 <span style=color:#f92672>[</span>installed<span style=color:#f92672>]</span>
+dotnet-targeting-pack-6.0/focal,now 6.0.0-1 amd64 <span style=color:#f92672>[</span>installed,automatic<span style=color:#f92672>]</span>
+</code></pre></div><ul>
+<li>dotnet-sdk-6.0
+<ul>
+<li>dotnet-sdk-6.0/focal</li>
+<li>dotnet-apphost-pack-6.0/focal</li>
+<li>dotnet-targeting-pack-6.0/focal</li>
+<li>dotnet-runtime
+<ul>
+<li>dotnet-runtime-6.0/focal</li>
+<li>dotnet-runtime-deps-6.0/focal</li>
+<li>dotnet-host/focal</li>
+<li>dotnet-hostfxr-6.0/focal</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>aspnetcore-runtime-6.0
+<ul>
+<li>aspnetcore-runtime-6.0/focal,</li>
+<li>dotnet-runtime
+<ul>
+<li>dotnet-runtime-6.0/focal</li>
+<li>dotnet-runtime-deps-6.0/focal</li>
+<li>dotnet-host/focal</li>
+<li>dotnet-hostfxr-6.0/focal</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dotnet-runtime-6.0
+<ul>
+<li>dotnet-runtime-6.0/focal</li>
+<li>dotnet-runtime-deps-6.0/focal</li>
+<li>dotnet-host/focal</li>
+<li>dotnet-hostfxr-6.0/focal</li>
+</ul>
+</li>
+</ul>
+<h2 id=net-60-패키지-제거>.NET 6.0 패키지 제거</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>apt purge -y dotnet-* aspnetcore-*
+</code></pre></div><h2 id=net-패키지-업그레이드>.NET 패키지 업그레이드</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>sudo apt update
+sudo apt list --upgradeable
+sudo apt upgrade
+</code></pre></div><h2 id=참고-사이트>참고 사이트</h2>
+<ul>
+<li><a href=https://docs.microsoft.com/ko-kr/dotnet/core/install/linux-debian#unable-to-locate--some-packages-could-not-be-installed>Debian에 .NET SDK 또는 .NET 런타임 설치</a></li>
+</ul>
 <div class=section-index>
-<hr class=panel-line>
-<div class=entry>
-<h5>
-<a href=/learned/dapr/install/dapr/>Dapr 설치</a>
-</h5>
-<p>Ubuntu 20.04 LTS 환경에서 Dapr 설치</p>
-</div>
-<div class=entry>
-<h5>
-<a href=/learned/dapr/install/dotnet/>.NET 6.0 설치</a>
-</h5>
-<p>Ubuntu 20.04 LTS 환경에서 .NET 6.0 설치</p>
-</div>
-<div class=entry>
-<h5>
-<a href=/learned/dapr/install/wsl/>Ubuntu 20.04 LTS 설치</a>
-</h5>
-<p>WSL2 기반 Ubuntu 20.04 LTS 환경 구축</p>
-</div>
 </div>
 </div>
 </main>
