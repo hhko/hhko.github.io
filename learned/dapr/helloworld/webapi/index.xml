@@ -1,6 +1,6 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>배움은 설렘이다 – WebAPI</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/</link><description>Recent content in WebAPI on 배움은 설렘이다</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><atom:link href="https://hhko.github.io/learned/dapr/helloworld/webapi/index.xml" rel="self" type="application/rss+xml"/><item><title>Learned: WebAPI 1. Daprized</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/daprized/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi/daprized/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>배움은 설렘이다 – WebAPI</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/</link><description>Recent content in WebAPI on 배움은 설렘이다</description><generator>Hugo -- gohugo.io</generator><language>ko-KR</language><atom:link href="https://hhko.github.io/learned/dapr/helloworld/webapi/index.xml" rel="self" type="application/rss+xml"/><item><title>Learned: Daprized BackEnd</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/daprized-backend/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi/daprized-backend/</guid><description>
 &lt;ul>
-&lt;li>소스 : &lt;a href="./MyBackEnd">링크&lt;/a>&lt;/li>
+&lt;li>소스 : &lt;a href="./Daprized">링크&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;h2 id="webapi-c-프로젝트">WebAPI C# 프로젝트&lt;/h2>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-shell" data-lang="shell">&lt;span style="color:#75715e"># WebAPI 프로젝트 생성&lt;/span>
@@ -52,10 +52,7 @@ http://localhost:3500/v1.0/invoke/myybackend/method/weatherforecast
 &lt;img src="./dapr-list.png" alt="">&lt;/li>
 &lt;li>&lt;code>dapr dashboard&lt;/code>&lt;br>
 &lt;img src="./dapr-dashboard.png" alt="">&lt;/li>
-&lt;/ul></description></item><item><title>Learned: WebAPI 1. Debugging</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/debugging/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi/debugging/</guid><description>
-&lt;ul>
-&lt;li>&lt;a href="https://www.youtube.com/watch?v=j_Vb-VDJQB4&amp;amp;list=PLLajsYIn6RRTAOM2vIs2pz_p2JXnCd74Y&amp;amp;index=6">https://www.youtube.com/watch?v=j_Vb-VDJQB4&amp;amp;list=PLLajsYIn6RRTAOM2vIs2pz_p2JXnCd74Y&amp;amp;index=6&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>Learned: WebAPI 2. Containerized</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/containerized/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi/containerized/</guid><description>
+&lt;/ul></description></item><item><title>Learned: Daprized FrontEnd</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/daprized-frontend/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi/daprized-frontend/</guid><description/></item><item><title>Learned: Containerized</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/containerized/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi/containerized/</guid><description>
 &lt;ul>
 &lt;li>소스 : &lt;a href="./MyBackEnd">링크&lt;/a>&lt;/li>
 &lt;/ul>
@@ -231,4 +228,7 @@ depends_on:
 - mybackend
 network_mode: &amp;ldquo;service:mybackend&amp;rdquo;&lt;/p>
 &lt;p>daprio/daprd:latest -&amp;gt;
-gRPC 50001?&lt;/p></description></item></channel></rss>
+gRPC 50001?&lt;/p></description></item><item><title>Learned: WebAPI 4. Debugging</title><link>https://hhko.github.io/learned/dapr/helloworld/webapi/debugging/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://hhko.github.io/learned/dapr/helloworld/webapi/debugging/</guid><description>
+&lt;ul>
+&lt;li>&lt;a href="https://www.youtube.com/watch?v=j_Vb-VDJQB4&amp;amp;list=PLLajsYIn6RRTAOM2vIs2pz_p2JXnCd74Y&amp;amp;index=6">https://www.youtube.com/watch?v=j_Vb-VDJQB4&amp;amp;list=PLLajsYIn6RRTAOM2vIs2pz_p2JXnCd74Y&amp;amp;index=6&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>
