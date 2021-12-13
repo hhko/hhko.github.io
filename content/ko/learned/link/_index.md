@@ -1,7 +1,7 @@
 ---
 title: 참고 자료
 description: 유요한 사이트
-type: docs
+#type: docs
 ---
 
 ## Dapr

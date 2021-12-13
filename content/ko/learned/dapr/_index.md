@@ -2,7 +2,7 @@
 title: Dapr
 #linkTitle: OpenSearch 링크 제목
 description: 분산 애플리케이션(distributed applications) 개발을 위한 런타임(Runtime)
-type: docs
+#type: docs
 #no_list: true
 #main_menu: true
 #content_type: concept

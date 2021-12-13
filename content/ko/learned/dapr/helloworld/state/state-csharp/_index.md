@@ -2,7 +2,7 @@
 title: State C#
 #linkTitle: OpenSearch 링크 제목
 description: Redis 상태 읽기 및 쓰기 예제
-type: docs
+#type: docs
 weight: 2
 #no_list: true
 #main_menu: true

@@ -1,15 +1,15 @@
 ---
-title: WebAPI 1. Daprized
+title: Daprized BackEnd
 #linkTitle: OpenSearch 링크 제목
-description: WebAPI Daprized
-type: docs
+description: Daprized BackEnd
+#type: docs
 weight: 1
 #no_list: true
 #main_menu: true
 #content_type: concept
 ---
 
-- 소스 : [링크](./MyBackEnd)
+- 소스 : [링크](./Daprized)
 
 ## WebAPI C# 프로젝트
 ```shell

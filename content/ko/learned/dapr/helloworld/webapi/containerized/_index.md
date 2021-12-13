@@ -1,8 +1,8 @@
 ---
-title: WebAPI 2. Containerized
+title: Containerized
 #linkTitle: OpenSearch 링크 제목
-description: Containerized WebAPI Daprized 
-type: docs
+description: Containerized BackEnd와 FrontEnd 
+#type: docs
 weight: 3
 #no_list: true
 #main_menu: true

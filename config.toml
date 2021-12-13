@@ -39,3 +39,26 @@ languagedirection = "ltr"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+#
+# UI 설정
+#
+
+[params.ui]
+   # https://www.docsy.dev/docs/adding-content/navigation/#section-menu-options
+   # Enable to show the side bar menu in its compact state.
+   # 메뉴 1수준만 표시 유/무
+   sidebar_menu_compact = true
+   # Show expand/collapse icon for sidebar sections
+   # 메뉴 expand/collapse 아이콘 표시 유/무
+   #sidebar_menu_foldable = true
+
+   # Enable the logo
+   #navbar_logo = false
+   # Enable the search box in the side bar.
+   #sidebar_search_disable = false
+   # Set to true to disable breadcrumb navigation.
+   #breadcrumb_disable = false
+   
+   # Disable about button in footer
+   #footer_about_disable = true

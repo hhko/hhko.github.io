@@ -1,9 +1,9 @@
 ---
-title: WebAPI 1. Debugging
+title: WebAPI 4. Debugging
 #linkTitle: OpenSearch 링크 제목
 description: WebAPI Debugging with Visual Stuido Code
-type: docs
-weight: 2
+#type: docs
+weight: 4
 #no_list: true
 #main_menu: true
 #content_type: concept

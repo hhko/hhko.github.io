@@ -1,9 +1,9 @@
 ---
-title: 설치
+title: Daprized FrontEnd 
 #linkTitle: OpenSearch 링크 제목
-description: 개발 환경 설치
+description: Daprized FrontEnd 
 #type: docs
-weight: 1
+weight: 2
 #no_list: true
 #main_menu: true
 #content_type: concept
