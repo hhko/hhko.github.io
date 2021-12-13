@@ -6,14 +6,15 @@ title: 제목
 <div class="col-12">
 
 ### 주제
-- Domain-Driven Design
-- Dapr
-- OpenSearch
-- Kubernetes
-- Tye
-- Docker
-- Ubuntu
-- Git
+- 예정 : Domain-Driven Design
+- 예정 : Unit Test
+- 진행 : Dapr
+- 예정 : OpenSearch
+- 예정 : Kubernetes
+- 예정 : Tye
+- 예정 : Docker
+- 예정 : Ubuntu
+- 예정 : Git
 
 ### TODO
 - [ ] Dapr | .NET 6.0 설치 내용에 Ubuntu 패키지 관리 내용 보강
