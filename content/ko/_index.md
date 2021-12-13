@@ -6,8 +6,12 @@ title: 제목
 <div class="col-12">
 
 ### 주제
+- Domain-Driven Design
 - Dapr
 - OpenSearch
+- Kubernetes
+- Tye
+- Docker
 - Ubuntu
 - Git
 
