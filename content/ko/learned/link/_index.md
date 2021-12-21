@@ -6,9 +6,9 @@ description: 유요한 사이트
 
 ## OpenSearch
 - [ ][Open Distro for Elasticsearch 한글화된 보암 및 계정 관리](https://www.dkdk.info/wpb/?p=175)
-- [ ][Open Distro for Elasticsearch — 로그를 활용한 장애 탐지](https://medium.com/29cm/open-distro-for-elasticsearch-%EB%A1%9C%EA%B7%B8%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%9E%A5%EC%95%A0-%ED%83%90%EC%A7%80-8ff60dc3e5f)
+- [ ][Open Distro for Elasticsearch 로그를 활용한 장애 탐지](https://medium.com/29cm/open-distro-for-elasticsearch-%EB%A1%9C%EA%B7%B8%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%9E%A5%EC%95%A0-%ED%83%90%EC%A7%80-8ff60dc3e5f)
 - [ ][Elasticsearch single-node cluster 설치](https://documentation.wazuh.com/current/installation-guide/open-distro/distributed-deployment/step-by-step-installation/elasticsearch-cluster/elasticsearch-single-node-cluster.html)
-- [][Implementing Security in Elasticsearch OSS Distribution using Open Distro Security Plugin](https://medium.com/codex/implementing-security-in-elasticsearch-oss-distribution-using-open-distro-security-plugin-d1d106e62ca6)
+- [ ][Implementing Security in Elasticsearch OSS Distribution using Open Distro Security Plugin](https://medium.com/codex/implementing-security-in-elasticsearch-oss-distribution-using-open-distro-security-plugin-d1d106e62ca6)
 
 ## Dapr
 - [Dapr Routing | Net 6.0 | Part I](https://www.youtube.com/watch?v=NBDQ8vp0E_M&list=PLbFaOt0VQ7S9txKOwJQIb258Wq99dgISL&index=2)
