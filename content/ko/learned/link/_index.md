@@ -1,6 +1,6 @@
 ---
 title: 참고 자료
-description: 유요한 사이트
+description: 참고 사이트 목록
 #type: docs
 ---
 
