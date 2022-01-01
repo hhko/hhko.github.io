@@ -56,7 +56,7 @@ git --version
 ```
 
 ### Git Config
-```
+```shell
 #
 # 환경설정 옵션
 #
@@ -91,16 +91,17 @@ git config --worktree -e
 # 필수 환경설정
 #
 # config 편집 도구
-git config --global core.editor "code --wait"
+git config --global core.editor 'code --wait'
+git config --global core.editor 'code --wait --new-window'   # 새 VSCode
      system > core.editor = \"C:\\\\Program Files\\\\Notepad++\\\\notepad++.exe\" -multiInst -notabbar -nosession -noPlugin
 
 # diff 편집 도구
-git config --global diff.tool "vscode"
-git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE"
+git config --global diff.tool vscode
+git config --global difftool.vscode.cmd 'code --wait --diff $LOCAL $REMOTE'   # "가 아닌 '이다.
 
 # merge 편집 도구
-git config --global merge.tool "vscode"
-git config --global mergetool.vscode.cmd "code --wait $MERGED"
+git config --global merge.tool vscode
+git config --global mergetool.vscode.cmd 'code --wait $MERGED'   # "가 아닌 '이다.
 
 # 계정
 git config --global user.name "xxx"
@@ -162,3 +163,7 @@ git log
       - Modified
   - Staging Area : **`staged` ＝ `cached`**
   - Local Repo.
+
+
+## 참고 자료
+- [x] [How to use VS Code as your Git editor, difftool, and mergetool](https://www.roboleary.net/vscode/2020/09/15/vscode-git.html) : Git config shell 설정하기
