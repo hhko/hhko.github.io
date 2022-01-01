@@ -138,6 +138,7 @@
 <li><a href=#git-config>Git Config</a></li>
 </ul>
 </li>
+<li><a href=#참고-자료>참고 자료</a></li>
 </ul>
 </nav></div>
 </aside>
@@ -209,69 +210,70 @@ PS &gt; refreshenv
 <span style=color:#75715e>#</span>
 git --version
 </code></pre></div><h3 id=git-config>Git Config</h3>
-<pre tabindex=0><code>#
-# 환경설정 옵션
-#
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e>#</span>
+<span style=color:#75715e># 환경설정 옵션</span>
+<span style=color:#75715e>#</span>
 git config -h
     -l, --list            list all
     -e, --edit            open an editor
 
-#
-# 환경설정 확인
-#
+<span style=color:#75715e>#</span>
+<span style=color:#75715e># 환경설정 확인</span>
+<span style=color:#75715e>#</span>
 git config -l
 
-#
-# 환경설정 범주
-# - C:\Users\{계정명}\.gitconfig
-# - C:\Program Files\Git\etc\gitconfig
-# - .\.git\config
+<span style=color:#75715e>#</span>
+<span style=color:#75715e># 환경설정 범주</span>
+<span style=color:#75715e># - C:\Users\{계정명}\.gitconfig</span>
+<span style=color:#75715e># - C:\Program Files\Git\etc\gitconfig</span>
+<span style=color:#75715e># - .\.git\config</span>
 git config --global -l
 git config --system -l
 git config --local -l
 git config --worktree -l
 
-#
-# 환경설정 편집
-#
+<span style=color:#75715e>#</span>
+<span style=color:#75715e># 환경설정 편집</span>
+<span style=color:#75715e>#</span>
 git config --global -e
 git config --system -e
 git config --local -e
 git config --worktree -e
 
-#
-# 필수 환경설정
-#
-# config 편집 도구
-git config --global core.editor &quot;code --wait&quot;
-     system &gt; core.editor = \&quot;C:\\\\Program Files\\\\Notepad++\\\\notepad++.exe\&quot; -multiInst -notabbar -nosession -noPlugin
+<span style=color:#75715e>#</span>
+<span style=color:#75715e># 필수 환경설정</span>
+<span style=color:#75715e>#</span>
+<span style=color:#75715e># config 편집 도구</span>
+git config --global core.editor <span style=color:#e6db74>&#39;code --wait&#39;</span>
+git config --global core.editor <span style=color:#e6db74>&#39;code --wait --new-window&#39;</span>   <span style=color:#75715e># 새 VSCode</span>
+     system &gt; core.editor <span style=color:#f92672>=</span> <span style=color:#ae81ff>\&#34;</span>C:<span style=color:#ae81ff>\\\\</span>Program Files<span style=color:#ae81ff>\\\\</span>Notepad++<span style=color:#ae81ff>\\\\</span>notepad++.exe<span style=color:#ae81ff>\&#34;</span> -multiInst -notabbar -nosession -noPlugin
 
-# diff 편집 도구
-git config --global diff.tool &quot;vscode&quot;
-git config --global difftool.vscode.cmd &quot;code --wait --diff $LOCAL $REMOTE&quot;
+<span style=color:#75715e># diff 편집 도구</span>
+git config --global diff.tool vscode
+git config --global difftool.vscode.cmd <span style=color:#e6db74>&#39;code --wait --diff $LOCAL $REMOTE&#39;</span>   <span style=color:#75715e># &#34;가 아닌 &#39;이다.</span>
 
-# merge 편집 도구
-git config --global merge.tool &quot;vscode&quot;
-git config --global mergetool.vscode.cmd &quot;code --wait $MERGED&quot;
+<span style=color:#75715e># merge 편집 도구</span>
+git config --global merge.tool vscode
+git config --global mergetool.vscode.cmd <span style=color:#e6db74>&#39;code --wait $MERGED&#39;</span>   <span style=color:#75715e># &#34;가 아닌 &#39;이다.</span>
 
-# 계정
-git config --global user.name &quot;xxx&quot;
-git config --global user.email &quot;xxx@yyy.com&quot;
-     local &gt; git config user.name &quot;xxx&quot;
-     local &gt; git config user.email &quot;xxx@yyy.com&quot;
+<span style=color:#75715e># 계정</span>
+git config --global user.name <span style=color:#e6db74>&#34;xxx&#34;</span>
+git config --global user.email <span style=color:#e6db74>&#34;xxx@yyy.com&#34;</span>
+     local &gt; git config user.name <span style=color:#e6db74>&#34;xxx&#34;</span>
+     local &gt; git config user.email <span style=color:#e6db74>&#34;xxx@yyy.com&#34;</span>
 
-# 기본 브랜치명
+<span style=color:#75715e># 기본 브랜치명</span>
 git config --global init.defaultBranch main
 
-# \r 처리
+<span style=color:#75715e># \r 처리</span>
 git config --global core.autocrlf true
-     true : \r\n  -&gt; \n
-     input : \n   -&gt; \n
+     true : <span style=color:#ae81ff>\r\n</span>  -&gt; <span style=color:#ae81ff>\n</span>
+     input : <span style=color:#ae81ff>\n</span>   -&gt; <span style=color:#ae81ff>\n</span>
 
-# 한글 깨짐
+<span style=color:#75715e># 한글 깨짐</span>
 git config --global core.quotepath false
-  # LC_ALL -&gt; ko_KR.UTF-8
-</code></pre><table>
+  <span style=color:#75715e># LC_ALL -&gt; ko_KR.UTF-8</span>
+</code></pre></div><table>
 <thead>
 <tr>
 <th>운영체제</th>
@@ -344,6 +346,10 @@ git log
 <li>Local Repo.</li>
 </ul>
 </li>
+</ul>
+<h2 id=참고-자료>참고 자료</h2>
+<ul>
+<li><input checked disabled type=checkbox> <a href=https://www.roboleary.net/vscode/2020/09/15/vscode-git.html>How to use VS Code as your Git editor, difftool, and mergetool</a> : Git config shell 설정하기</li>
 </ul>
 <div class=section-index>
 </div>
