@@ -167,3 +167,5 @@ git log
 
 ## 참고 자료
 - [x] [How to use VS Code as your Git editor, difftool, and mergetool](https://www.roboleary.net/vscode/2020/09/15/vscode-git.html) : Git config shell 설정하기
+- [ ] [Git Command 정리](https://seunghyum.github.io/git/Git-Command/)
+- [ ] [Reverting Modified in 4 Stages in Git](https://medium.com/@zjpjack/reverting-modified-in-4-stages-in-git-f3997f526902)
