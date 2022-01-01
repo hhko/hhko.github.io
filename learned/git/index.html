@@ -128,6 +128,18 @@
 <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
 <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
 </div>
+<div class=td-toc><nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#powershell>Powershell</a></li>
+<li><a href=#git-설치>Git 설치</a></li>
+<li><a href=#git>Git</a></li>
+<li><a href=#git-config>Git Config</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
 </aside>
 <main class="col-12 col-md-9 col-xl-8 pl-md-5" role=main>
 <nav aria-label=breadcrumb class=td-breadcrumbs>
@@ -145,69 +157,151 @@
 <div class=lead>.</div>
 <header class=article-meta>
 </header>
+<h3 id=powershell>Powershell</h3>
+<ul>
+<li>공백 경로
+<ul>
+<li>변경 전 : <code>"C:\Program Files\Microsoft Visual Studio\Bin\hello.exe"</code></li>
+<li>변경 후 : C:\<code>"Program Files"</code>\<code>"Microsoft Visual Studio"</code>\Bin\hello.exe</li>
+</ul>
+</li>
+<li>한글 깨짐
+<ul>
+<li><a href=https://torbjorn.tistory.com/550>OS : intl.cpl -> &ldquo;시스템 로캘 변경&rdquo; 탭 -> 한국어(대한민국), <input checked disabled type=checkbox> Beta 세계 언어 지원을 위해 Unicode UTF-8 사용</a></li>
+</ul>
+</li>
+</ul>
+<h3 id=git-설치>Git 설치</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>choco search git
+choco install git -y –version 2.34.1
+
+choco upgrade chocolatey
+
+choco search git
+choco install git -y –version 2.34.1
+
+<span style=color:#75715e># 원격 검색</span>
+<span style=color:#75715e># 모든 버전 원격 검색</span>
+<span style=color:#75715e># 로컬 검색</span>
+<span style=color:#75715e># 정확히 검색</span>
+
+<span style=color:#75715e># 설치</span>
+<span style=color:#75715e># 특정 버전 설치</span>
+<span style=color:#75715e># 삭제</span>
+
+<span style=color:#75715e># 현재 설치된 패키지 목록 조회</span>
+PS &gt; choco list -lo
+
+<span style=color:#75715e># 최신 버전이 아닌 패키지 목록 조회</span>
+PS &gt; choco outdated
+
+<span style=color:#75715e># 모든 패키지를 최신 버전으로 업그레이드</span>
+PS &gt; choco upgrade all
+
+<span style=color:#75715e># 특정 패지지 설치 후 PATH 환경 변수 변경점 발생시 PowerShell 재시작 없이 즉시 반영</span>
+PS &gt; refreshenv
+</code></pre></div><ul>
+<li><a href=https://jsonobject.tistory.com/526>choco, Windows 패키지 관리자 설치하기</a></li>
+</ul>
+<h3 id=git>Git</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e>#</span>
 <span style=color:#75715e># 버전</span>
 <span style=color:#75715e>#</span>
 git --version
-
-<span style=color:#75715e>#</span>
-<span style=color:#75715e># 환경설정 옵션</span>
-<span style=color:#75715e>#</span>
+</code></pre></div><h3 id=git-config>Git Config</h3>
+<pre tabindex=0><code>#
+# 환경설정 옵션
+#
 git config -h
     -l, --list            list all
     -e, --edit            open an editor
 
-<span style=color:#75715e>#</span>
-<span style=color:#75715e># 환경설정 확인</span>
-<span style=color:#75715e>#</span>
+#
+# 환경설정 확인
+#
 git config -l
 
-<span style=color:#75715e>#</span>
-<span style=color:#75715e># 환경설정 범주</span>
-<span style=color:#75715e># - C:\Users\{계정명}\.gitconfig</span>
-<span style=color:#75715e># - C:\Program Files\Git\etc\gitconfig</span>
-<span style=color:#75715e># - .\.git\config</span>
+#
+# 환경설정 범주
+# - C:\Users\{계정명}\.gitconfig
+# - C:\Program Files\Git\etc\gitconfig
+# - .\.git\config
 git config --global -l
 git config --system -l
 git config --local -l
 git config --worktree -l
 
-<span style=color:#75715e>#</span>
-<span style=color:#75715e># 환경설정 편집</span>
-<span style=color:#75715e>#</span>
+#
+# 환경설정 편집
+#
 git config --global -e
 git config --system -e
 git config --local -e
 git config --worktree -e
 
-<span style=color:#75715e>#</span>
-<span style=color:#75715e># 필수 환경설정</span>
-<span style=color:#75715e>#</span>
-<span style=color:#75715e># 편집 도구</span>
-git config --global core.editor <span style=color:#e6db74>&#34;code --wait&#34;</span>
-     system &gt; core.editor <span style=color:#f92672>=</span> <span style=color:#ae81ff>\&#34;</span>C:<span style=color:#ae81ff>\\\\</span>Program Files<span style=color:#ae81ff>\\\\</span>Notepad++<span style=color:#ae81ff>\\\\</span>notepad++.exe<span style=color:#ae81ff>\&#34;</span> -multiInst -notabbar -nosession -noPlugin
+#
+# 필수 환경설정
+#
+# config 편집 도구
+git config --global core.editor &quot;code --wait&quot;
+     system &gt; core.editor = \&quot;C:\\\\Program Files\\\\Notepad++\\\\notepad++.exe\&quot; -multiInst -notabbar -nosession -noPlugin
 
-<span style=color:#75715e># diff 편집 도구</span>
-git config --global diff.tool <span style=color:#e6db74>&#34;vscode&#34;</span>
-git config --global difftool.vscode.cmd <span style=color:#e6db74>&#34;code --wait --diff </span>$LOCAL<span style=color:#e6db74> </span>$REMOTE<span style=color:#e6db74>&#34;</span>
+# diff 편집 도구
+git config --global diff.tool &quot;vscode&quot;
+git config --global difftool.vscode.cmd &quot;code --wait --diff $LOCAL $REMOTE&quot;
 
-<span style=color:#75715e># 계정</span>
-git config --global user.name <span style=color:#e6db74>&#34;xxx&#34;</span>
-git config --global user.email <span style=color:#e6db74>&#34;xxx@yyy.com&#34;</span>
-     local &gt; git config user.name <span style=color:#e6db74>&#34;xxx&#34;</span>
-     local &gt; git config user.email <span style=color:#e6db74>&#34;xxx@yyy.com&#34;</span>
+# merge 편집 도구
+git config --global merge.tool &quot;vscode&quot;
+git config --global mergetool.vscode.cmd &quot;code --wait $MERGED&quot;
 
-<span style=color:#75715e># \r 처리</span>
+# 계정
+git config --global user.name &quot;xxx&quot;
+git config --global user.email &quot;xxx@yyy.com&quot;
+     local &gt; git config user.name &quot;xxx&quot;
+     local &gt; git config user.email &quot;xxx@yyy.com&quot;
+
+# 기본 브랜치명
+git config --global init.defaultBranch main
+
+# \r 처리
 git config --global core.autocrlf true
-     true : <span style=color:#ae81ff>\r\n</span>  -&gt; <span style=color:#ae81ff>\n</span>
-     input : <span style=color:#ae81ff>\n</span>   -&gt; <span style=color:#ae81ff>\n</span>
+     true : \r\n  -&gt; \n
+     input : \n   -&gt; \n
 
-<span style=color:#75715e># 한글 깨짐</span>
+# 한글 깨짐
 git config --global core.quotepath false
-
-<span style=color:#75715e># 브랜치명?</span>
-
-<span style=color:#75715e>#</span>
+  # LC_ALL -&gt; ko_KR.UTF-8
+</code></pre><table>
+<thead>
+<tr>
+<th>운영체제</th>
+<th>Gtt 명령어</th>
+<th>설정 적용 범위</th>
+<th>설정 파일 경로</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux</td>
+<td>git config &ndash;system</td>
+<td>시스템의 모든 사용자와 모든 저장소</td>
+<td>/etc/gitconfig</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>git config &ndash;global</td>
+<td>시스템의 특정 사용자의 모든 저장소</td>
+<td>~/.gitconfig,~/.config/git/config</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>git config &ndash;local</td>
+<td>현재 작업중인 특정 저장소</td>
+<td>./</td>
+</tr>
+</tbody>
+</table>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#75715e>#</span>
 <span style=color:#75715e># 별칭</span>
 <span style=color:#75715e># - git config --global alias.{별칭} {git 명령}</span>
 git config --global alias.st status
@@ -215,7 +309,7 @@ git st
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>git init
    .git
 git add .  
-   &lt;-&gt; git restore --staged .
+   &lt;- git restore --staged .
 git status
    git status -s
 git diff 
@@ -225,7 +319,7 @@ git difftool -y
    git difftool --staged -y
 git log
    <span style=color:#75715e># &#39;sysdm.cpl ,3&#39; 환경 변수 : System Device Manager</span>
-   LC_ALL -&gt; ko_KR.UTF-8
+   
 </code></pre></div><ul>
 <li>버전 : commit 단위
 <ul>
