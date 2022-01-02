@@ -164,6 +164,38 @@ git log
   - Staging Area : **`staged` ＝ `cached`**
   - Local Repo.
 
+<br/>
+
+```shell
+git init
+git config --global -l/-e
+git config user.name {이름}
+git config user.name
+git add .
+git status
+git status -s
+git commit -m "{메시지}"
+git commit --amend
+git commit --amend --no-edit
+git commit --amend -m "{메시지}"
+git commit --amend --author "이름 <메일@도메인>"
+git log 
+git log -{숫자}
+git log -p/--patch						// 파일 목록
+git log --pretty=oneline
+git log --pretty-oneline --graph
+git log --stat							// 파일 목록
+git remote add origin {원격 저장소 URL}
+	.git/config
+git remote -v
+git push origin master
+git clone {원격 저장소 URL}
+git clone {원격 저장소 URL} 폴더명
+```
+- git rm
+- git restore
+- git diff
+- git commit --amend
 
 ## 참고 자료
 - [x] [How to use VS Code as your Git editor, difftool, and mergetool](https://www.roboleary.net/vscode/2020/09/15/vscode-git.html) : Git config shell 설정하기
