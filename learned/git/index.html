@@ -347,6 +347,37 @@ git log
 </ul>
 </li>
 </ul>
+<br>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell>git init
+git config --global -l/-e
+git config user.name <span style=color:#f92672>{</span>이름<span style=color:#f92672>}</span>
+git config user.name
+git add .
+git status
+git status -s
+git commit -m <span style=color:#e6db74>&#34;{메시지}&#34;</span>
+git commit --amend
+git commit --amend --no-edit
+git commit --amend -m <span style=color:#e6db74>&#34;{메시지}&#34;</span>
+git commit --amend --author <span style=color:#e6db74>&#34;이름 &lt;메일@도메인&gt;&#34;</span>
+git log 
+git log -<span style=color:#f92672>{</span>숫자<span style=color:#f92672>}</span>
+git log -p/--patch						// 파일 목록
+git log --pretty<span style=color:#f92672>=</span>oneline
+git log --pretty-oneline --graph
+git log --stat							// 파일 목록
+git remote add origin <span style=color:#f92672>{</span>원격 저장소 URL<span style=color:#f92672>}</span>
+	.git/config
+git remote -v
+git push origin master
+git clone <span style=color:#f92672>{</span>원격 저장소 URL<span style=color:#f92672>}</span>
+git clone <span style=color:#f92672>{</span>원격 저장소 URL<span style=color:#f92672>}</span> 폴더명
+</code></pre></div><ul>
+<li>git rm</li>
+<li>git restore</li>
+<li>git diff</li>
+<li>git commit &ndash;amend</li>
+</ul>
 <h2 id=참고-자료>참고 자료</h2>
 <ul>
 <li><input checked disabled type=checkbox> <a href=https://www.roboleary.net/vscode/2020/09/15/vscode-git.html>How to use VS Code as your Git editor, difftool, and mergetool</a> : Git config shell 설정하기</li>
