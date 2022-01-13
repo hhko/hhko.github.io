@@ -1,3 +1,9 @@
+---
+title: dotnet
+description: dotnet 명령어
+#type: docs
+---
+
 ## 템플릿
 ### 템플릿 목록 확인하기
 ```shell
