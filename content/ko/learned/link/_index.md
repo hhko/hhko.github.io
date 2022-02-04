@@ -8,6 +8,10 @@ description: 참고 사이트 목록
 - [ ] [.NETCore.With(“vsCode”).Should().Have(“Unit Tests”)](https://xpirit.com/netcore-withvscode-should-haveunit-tests/)
   - [ ] [Unit testing a .NET Core project in VS Code(TicTacToe)](https://github.com/XpiritBV/unittesting-dotnetcore-vscode)
 
+## DDD
+- [ ] [도메인 원정대 #우아콘2021 #둘째날_새로운여정](https://www.youtube.com/watch?v=kmUneexSxk0&list=PLgXGHBqgT2Ttcttvjy5_4GacLPcs6iM-s)
+- [ ] [도메인 지식 탐구를 위한 이벤트 스토밍 Event Storming](https://www.youtube.com/watch?v=hUcpv5fdCIk)
+
 ## OpenSearch
 - [ ] [Open Distro for Elasticsearch 한글화된 보암 및 계정 관리](https://www.dkdk.info/wpb/?p=175)
 - [ ] [Open Distro for Elasticsearch 로그를 활용한 장애 탐지](https://medium.com/29cm/open-distro-for-elasticsearch-%EB%A1%9C%EA%B7%B8%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%9E%A5%EC%95%A0-%ED%83%90%EC%A7%80-8ff60dc3e5f)
