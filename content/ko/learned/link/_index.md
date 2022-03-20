@@ -63,3 +63,7 @@ description: 참고 사이트 목록
   - [siege](https://github.com/JoeDog/siege)
 + **Log**
    - [Serilog.Sinks.InMemory](https://github.com/serilog-contrib/SerilogSinksInMemory)
+
+## Ansible
+- [프로비저닝 자동화를 위한 Ansible AWX, 설치부터 엔터프라이즈 환경 적용까지 – 1](https://engineering.linecorp.com/ko/blog/ansible-awx-for-provisioning-1/)
+- [프로비저닝 자동화를 위한 Ansible AWX, 설치부터 엔터프라이즈 환경 적용까지 – 2](https://engineering.linecorp.com/ko/blog/ansible-awx-for-provisioning-2/)
